@@ -1,0 +1,4 @@
+cb.max_line_length = 100
+csharp_style_wrap_argument_list = lengthy
+csharp_style_wrap_expression_blocks = lengthy
+dotnet_diagnostic.format.severity= warning
