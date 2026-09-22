@@ -1,4 +1,14 @@
-cb.max_line_length = 100
-csharp_style_wrap_argument_list = lengthy
-csharp_style_wrap_expression_blocks = lengthy
-dotnet_diagnostic.format.severity= warning
+[*.cs]
+root = true
+
+[*.cs]
+# 1. Говорим анализатору переносить элементы, если они слишком длинные
+csharp_style_wrap_object_collection_and_tuple_initializers = lengthy:warning
+csharp_preserve_single_line_blocks = false:warning
+
+# 2. Включаем встроенный в VS 2026 лимит длины строки (100 символов)
+dotnet_code_quality.max_line_length = 100:warning
+
+# 3. Принудительно включаем встроенный форматировщик .NET на уровне Ошибки/Предупреждения
+dotnet_diagnostic.format.severity = warning
+dotnet_analyzer_diagnostic.category-Style.severity = warning

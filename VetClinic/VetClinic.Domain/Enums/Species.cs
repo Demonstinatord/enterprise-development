@@ -1,10 +1,29 @@
 namespace VetClinic.Domain;
-
+/// <summary>
+/// Перечисление видов животных.
+/// (Виды выбрал так, чтобы у них были породы.
+/// Поэтому не добавил хомячков, змей и попугаев.)
+/// </summary>
 public enum Species
 {
-    Cat=0, 
-    Dog=1, 
-    Pigeon=2, 
-    Rabbit=3, 
-    Horse=4
+    /// <summary>
+    /// Кошка
+    /// </summary>
+    Cat = 0,
+    /// <summary>
+    /// Собака
+    /// </summary>
+    Dog = 1,
+    /// <summary>
+    /// Голубь
+    /// </summary>
+    Pigeon = 2,
+    /// <summary>
+    /// Кролик
+    /// </summary>
+    Rabbit = 3,
+    /// <summary>
+    /// Лошадь
+    /// </summary>
+    Horse = 4
 }

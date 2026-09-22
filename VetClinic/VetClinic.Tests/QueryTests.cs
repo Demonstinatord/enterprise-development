@@ -6,10 +6,19 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace VetClinic.Tests;
-
+/// <summary>
+/// Класс, имитирующий linq запросы к домену
+/// 
+/// </summary>
 public class ClinicDomainTests : IClassFixture<VetClinicFixture>
 {
+    /// <summary>
+    /// Поле с тестовыми данными
+    /// </summary>
     private readonly VetClinicFixture _fixture;
+    /// <summary>
+    /// Поле с логами тестирвания
+    /// </summary>
     private readonly ITestOutputHelper _output; 
     public ClinicDomainTests(VetClinicFixture fixture, ITestOutputHelper output)
     {
@@ -18,6 +27,9 @@ public class ClinicDomainTests : IClassFixture<VetClinicFixture>
     }
 
     [Fact]
+    /// <summary>
+    /// Функция, которая распечатывает вложенную структуру Приёма -> (Врача; Питомца->Владельца)
+    /// </summary>
     public void DemoShowMeDataStructure()
     {
         var appointments = _fixture.Appointments;
@@ -32,13 +44,13 @@ public class ClinicDomainTests : IClassFixture<VetClinicFixture>
             _output.WriteLine("--- Вложенный объект Врача (Vet) ---");
             _output.WriteLine($"  Врач ID: {appointment.Vet.Id} | ФИО: {appointment.Vet.FullName} | Стаж: {appointment.Vet.ExpirienceYears} лет");
             _output.WriteLine($"  Паспорт: {appointment.Vet.PassportNumber} | ДР: {appointment.Vet.BirthDate}");
-            _output.WriteLine($"  Специализация: {appointment.Vet.Specialization.Name}");
+            _output.WriteLine($"  Специализация: {appointment.Vet.Specialization.Title}");
             _output.WriteLine("");
 
             _output.WriteLine("--- Вложенный объект Питомца (Pet) ---");
             _output.WriteLine($"  Питомец ID: {appointment.Pet.Id} | Кличка: {appointment.Pet.Name} | Вид: {appointment.Pet.Type} | Вес: {appointment.Pet.weight} кг");
             _output.WriteLine($"  Дата рождения: {appointment.Pet.BirthDate}");
-            _output.WriteLine($"  Порода: ID {appointment.Pet.BreedId} - {appointment.Pet.Breed.Name}");
+            _output.WriteLine($"  Порода: ID {appointment.Pet.BreedId} - {appointment.Pet.Breed.Title}");
             _output.WriteLine("");
 
             _output.WriteLine("--- Вложенный объект Владельца (Owner) ---");
@@ -50,6 +62,10 @@ public class ClinicDomainTests : IClassFixture<VetClinicFixture>
     }
 
     [Fact]
+    /// <summary>
+    /// Функция, которая распечатывает всех ветеринаров
+    /// занимающихся кошками
+    /// </summary>
     public void FindAllVetsForSpecificAnimalType()
     {
         var vets = _fixture.Vets
@@ -65,7 +81,11 @@ public class ClinicDomainTests : IClassFixture<VetClinicFixture>
     }
 
     [Fact]
-    public void FindAllPetsForSpecificVetsAndSort()
+    /// <summary>
+    /// Функция, которая находит всех животных, которых принял 
+    /// определённый врач, и сортирует в алфавитном порядке
+    /// </summary>
+    public void FindAllPetsForSpecificVetsAndSortByName()
     {
         var specificVet = _fixture.Vets[0];
         var matchedAppointments = _fixture.Appointments
@@ -82,11 +102,16 @@ public class ClinicDomainTests : IClassFixture<VetClinicFixture>
         {
             _output.WriteLine($"  Питомец ID: {p.Id} | Кличка: {p.Name} | Вид: {p.Type} | Вес: {p.weight} кг");
             _output.WriteLine($"  Дата рождения: {p.BirthDate}");
-            _output.WriteLine($"  Порода: ID {p.BreedId} - {p.Breed.Name}");
+            _output.WriteLine($"  Порода: ID {p.BreedId} - {p.Breed.Title}");
             _output.WriteLine("");
         }
+        Assert.NotEmpty( sortedPets );
     }
     [Fact]
+    /// <summary>
+    /// Функция, которая находит количество повторных обращений 
+    /// владельцев животных с выбранной породой
+    /// </summary>
     public void FindNumberOfSecondaryVisitForSpecificAnimalBreed()
     {
         var specificAnimalBreed = _fixture.Breeds[10];
@@ -106,7 +131,7 @@ public class ClinicDomainTests : IClassFixture<VetClinicFixture>
         {
             _output.WriteLine($"  Питомец ID: {p.Id} | Кличка: {p.Name} | Вид: {p.Type} | Вес: {p.weight} кг");
             _output.WriteLine($"  Дата рождения: {p.BirthDate}");
-            _output.WriteLine($"  Порода: ID {p.BreedId} - {p.Breed.Name}");
+            _output.WriteLine($"  Порода: ID {p.BreedId} - {p.Breed.Title}");
             _output.WriteLine("");
         }
         _output.WriteLine($" Колво питомцев:{sortedPets.Count()}");
@@ -114,6 +139,9 @@ public class ClinicDomainTests : IClassFixture<VetClinicFixture>
         Assert.All(matchedAppointments, appointment=>Assert.True(appointment.RepeatVisitIndicator==RepeatVisitIndicator.Yes));
     }
     [Fact]
+    /// <summary>
+    /// Функция, которая ищёт владельцев сразу нескольких питомцев
+    /// </summary>
     public void FindOwnersWithMultiplePets()
     {
         var owners = _fixture.Owners
@@ -128,13 +156,16 @@ public class ClinicDomainTests : IClassFixture<VetClinicFixture>
 
     }
     [Fact]
-    public void FindAppointmentsInSpecificRooms()
+    /// <summary>
+    /// Функция, которая находит приёмы, проходившие в определённом кабинете
+    /// в сентябре 26 года
+    public void FindAppointmentsInSpecificRoomsInSpecificMonth()
     {
         var specificRoom = 102;
         
         
         var appointments = _fixture.Appointments
-            .Where(appointment => appointment.RoomNumber== specificRoom && appointment.DateTime.Year == 2026 && appointment.DateTime.Month==9)
+            .Where(appointment => appointment.RoomNumber == specificRoom && appointment.DateTime.Year == 2026 && appointment.DateTime.Month==9)
             .ToArray();
         foreach (var a in appointments)
         {

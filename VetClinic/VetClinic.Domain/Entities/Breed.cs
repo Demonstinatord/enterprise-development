@@ -1,8 +1,19 @@
 ﻿namespace VetClinic.Domain;
-
+/// <summary>
+/// Порода животного, зависит от вида
+/// </summary>
 public class Breed
 {
+    /// <summary>
+    /// Идентификатор породы
+    /// </summary>
     public int Id { get; set; }
-    public required string Name { get; set; }
+    /// <summary>
+    /// Название породы
+    /// </summary>
+    public required string Title { get; set; }
+    /// <summary>
+    /// Ссылка на соответсвующий вид животного 
+    /// </summary>
     public required Species Type { get; set; }
 }
