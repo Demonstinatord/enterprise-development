@@ -31,7 +31,7 @@ public class Pet
     /// <summary>
     /// Вес животного 
     /// </summary>
-    public required int weight { get; set; }
+    public required decimal weight { get; set; }
     /// <summary>
     /// Идентификатор владельца 
     /// </summary>
