@@ -1,4 +1,6 @@
-namespace VetClinic.Domain;
+namespace VetClinic.Domain.Entities;
+
+using VetClinic.Domain.Enums;
 /// <summary>
 /// Питомец
 /// </summary>
@@ -21,7 +23,7 @@ public class Pet
     /// </summary>
     public required DateOnly BirthDate { get; set; }
     /// <summary>
-    /// Идентификатор клички
+    /// Идентификатор породы
     /// </summary>
     public int BreedId { get; set; }
     /// <summary>
@@ -31,7 +33,7 @@ public class Pet
     /// <summary>
     /// Вес животного 
     /// </summary>
-    public required decimal weight { get; set; }
+    public required decimal Weight { get; set; }
     /// <summary>
     /// Идентификатор владельца 
     /// </summary>

@@ -1,4 +1,4 @@
-namespace VetClinic.Domain;
+namespace VetClinic.Domain.Entities;
 /// <summary>
 /// Оказываемая животному услуга 
 /// </summary>
@@ -23,5 +23,5 @@ public class Service
     /// <summary>
     /// Ссылка на специализацию услуги
     /// </summary>
-    public required Specialization Specialization{ get; set; }
+    public required Specialization Specialization { get; set; }
 }

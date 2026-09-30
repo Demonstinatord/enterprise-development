@@ -1,4 +1,4 @@
-namespace VetClinic.Domain;
+namespace VetClinic.Domain.Entities;
 /// <summary>
 /// Владелец животного
 /// </summary>
@@ -20,5 +20,5 @@ public class Owner
     /// Адрес владельца 
     /// </summary>
     public required string Adress { get; set; }
-    
+
 }

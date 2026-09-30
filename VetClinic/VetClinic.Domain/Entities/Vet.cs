@@ -1,4 +1,4 @@
-using VetClinic.Domain;
+namespace VetClinic.Domain.Entities;
 /// <summary>
 /// Ветеринар
 /// </summary>

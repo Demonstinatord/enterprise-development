@@ -1,4 +1,4 @@
-namespace VetClinic.Domain;
+namespace VetClinic.Domain.Enums;
 /// <summary>
 /// Перечисление видов животных.
 /// (Виды выбрал так, чтобы у них были породы.

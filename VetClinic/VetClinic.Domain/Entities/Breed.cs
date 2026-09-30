@@ -1,4 +1,6 @@
-﻿namespace VetClinic.Domain;
+﻿namespace VetClinic.Domain.Entities;
+
+using VetClinic.Domain.Enums;
 /// <summary>
 /// Порода животного, зависит от вида
 /// </summary>

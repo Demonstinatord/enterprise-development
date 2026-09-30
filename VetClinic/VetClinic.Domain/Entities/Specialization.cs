@@ -1,4 +1,6 @@
-﻿using VetClinic.Domain;
+﻿namespace VetClinic.Domain.Entities;
+
+using VetClinic.Domain.Enums;
 /// <summary>
 /// Специализация врачей и оказываемых услуг
 /// </summary>
@@ -15,5 +17,5 @@ public class Specialization
     /// <summary>
     /// Вид животного
     /// </summary>
-    public required Species TargetSpecies { get; set; } 
+    public required Species TargetSpecies { get; set; }
 }

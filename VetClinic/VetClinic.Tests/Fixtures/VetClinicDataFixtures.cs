@@ -1,4 +1,5 @@
-using VetClinic.Domain;
+using VetClinic.Domain.Entities;
+using VetClinic.Domain.Enums;
 
 namespace VetClinic.Tests.Fixtures;
 /// <summary>
@@ -62,7 +63,9 @@ public class VetClinicFixture
     /// <summary>
     /// Функция, создающая список пород животных
     /// </summary>
-    private List<Breed> GetBreedsList() => [
+    private List<Breed> GetBreedsList()
+    {
+        return [
 
         new Breed
         {
@@ -76,13 +79,13 @@ public class VetClinicFixture
             Title = "Сиамская",
             Type = Species.Cat
         },
-        new Breed { 
+        new Breed {
             Id = 2,
             Title = "Британская короткошерстная",
             Type = Species.Cat
         },
 
-        new Breed { 
+        new Breed {
             Id = 3,
             Title = "Немецкая овчарка",
             Type = Species.Dog
@@ -155,11 +158,15 @@ public class VetClinicFixture
             Type = Species.Horse
         }
 ];
+    }
+
     /// <summary>
     /// Функция, создающая список владельцев
     /// </summary>
 
-    private List<Owner> GetOwnersList() => [
+    private List<Owner> GetOwnersList()
+    {
+        return [
         new Owner
         {
             Id = 0,
@@ -238,10 +245,14 @@ public class VetClinicFixture
             Adress = "ул. Первомайская, д. 23"
         }
     ];
+    }
+
     /// <summary>
     /// Функция, создающая список специализаций
     /// </summary>
-    private List<Specialization> GetSpecializationsList() => [
+    private List<Specialization> GetSpecializationsList()
+    {
+        return [
 
     new Specialization
     {
@@ -308,10 +319,14 @@ public class VetClinicFixture
         TargetSpecies = Species.Horse
     }
 ];
+    }
+
     /// <summary>
     /// Функция, создающая список ветеринаров
     /// </summary>
-    private List<Vet> GetVetsList() => [
+    private List<Vet> GetVetsList()
+    {
+        return [
 
 
         new Vet
@@ -416,6 +431,7 @@ public class VetClinicFixture
             Specialization = Specializations[9]
         }
 ];
+    }
 
     /// <summary>
     /// Функция, создающая список услуг
@@ -423,7 +439,7 @@ public class VetClinicFixture
 
     private List<Service> GetServicesList()
     {
-        var s = Specializations;
+        List<Specialization> s = Specializations;
 
         return [
         new Service
@@ -526,7 +542,7 @@ public class VetClinicFixture
             Specialization = s[6]
         },
 
-       
+
         new Service
         {
             Id = 12,
@@ -559,8 +575,8 @@ public class VetClinicFixture
     /// </summary>
     private List<Pet> GetPetsList()
     {
-        var o = Owners;
-        var b = Breeds;
+        List<Owner> o = Owners;
+        List<Breed> b = Breeds;
 
         List<Pet> list = [
         new Pet
@@ -569,7 +585,7 @@ public class VetClinicFixture
             Name = "Барсик",
             Type = Species.Cat,
             BirthDate = new DateOnly(2022, 4, 10),
-            weight = 6.5m,
+            Weight = 6.5m,
             BreedId = b[0].Id,
             Breed = b[0],
             OwnerId = o[0].Id,
@@ -581,7 +597,7 @@ public class VetClinicFixture
             Name = "Мурка",
             Type = Species.Cat,
             BirthDate = new DateOnly(2023, 6, 15),
-            weight = 4,
+            Weight = 4,
             BreedId = b[1].Id,
             Breed = b[1],
             OwnerId = o[1].Id,
@@ -593,7 +609,7 @@ public class VetClinicFixture
             Name = "Симба",
             Type = Species.Cat,
             BirthDate = new DateOnly(2025, 1, 20),
-            weight = 4.8m,
+            Weight = 4.8m,
             BreedId = b[2].Id,
             Breed = b[2],
             OwnerId = o[2].Id,
@@ -607,7 +623,7 @@ public class VetClinicFixture
             Name = "Шарик",
             Type = Species.Dog,
             BirthDate = new DateOnly(2020, 11, 5),
-            weight = 30.5m,
+            Weight = 30.5m,
             BreedId = b[3].Id,
             Breed = b[3],
             OwnerId = o[0].Id,
@@ -619,7 +635,7 @@ public class VetClinicFixture
             Name = "Рекс",
             Type = Species.Dog,
             BirthDate = new DateOnly(2021, 8, 25),
-            weight = 28.5m,
+            Weight = 28.5m,
             BreedId = b[4].Id,
             Breed = b[4],
             OwnerId = o[3].Id,
@@ -631,7 +647,7 @@ public class VetClinicFixture
             Name = "Граф",
             Type = Species.Dog,
             BirthDate = new DateOnly(2024, 3, 14),
-            weight = 8.7m,
+            Weight = 8.7m,
             BreedId = b[5].Id,
             Breed = b[5],
             OwnerId = o[4].Id,
@@ -644,7 +660,7 @@ public class VetClinicFixture
             Name = "Кеша",
             Type = Species.Pigeon,
             BirthDate = new DateOnly(2025, 5, 12),
-            weight = 0.65m,
+            Weight = 0.65m,
             BreedId = b[6].Id,
             Breed = b[6],
             OwnerId = o[5].Id,
@@ -656,7 +672,7 @@ public class VetClinicFixture
             Name = "Ворчун",
             Type = Species.Pigeon,
             BirthDate = new DateOnly(2024, 7, 19),
-            weight = 0.8m,
+            Weight = 0.8m,
             BreedId = b[7].Id,
             Breed = b[7],
             OwnerId = o[6].Id,
@@ -668,7 +684,7 @@ public class VetClinicFixture
             Name = "Пират",
             Type = Species.Pigeon,
             BirthDate = new DateOnly(2026, 2, 1),
-            weight = 1.15m,
+            Weight = 1.15m,
             BreedId = b[8].Id,
             Breed = b[8],
             OwnerId = o[7].Id,
@@ -682,7 +698,7 @@ public class VetClinicFixture
             Name = "Пушок",
             Type = Species.Rabbit,
             BirthDate = new DateOnly(2023, 10, 1),
-            weight = 3.7m,
+            Weight = 3.7m,
             BreedId = b[9].Id,
             Breed = b[9],
             OwnerId = o[1].Id,
@@ -694,7 +710,7 @@ public class VetClinicFixture
             Name = "Снежок",
             Type = Species.Rabbit,
             BirthDate = new DateOnly(2024, 12, 11),
-            weight = 2.3m,
+            Weight = 2.3m,
             BreedId = b[10].Id,
             Breed = b[10],
             OwnerId = o[8].Id,
@@ -706,7 +722,7 @@ public class VetClinicFixture
             Name = "Банни",
             Type = Species.Rabbit,
             BirthDate = new DateOnly(2025, 4, 3),
-            weight = 4.5m,
+            Weight = 4.5m,
             BreedId = b[11].Id,
             Breed = b[11],
             OwnerId = o[9].Id,
@@ -721,7 +737,7 @@ public class VetClinicFixture
             Name = "Буцефал",
             Type = Species.Horse,
             BirthDate = new DateOnly(2019, 5, 20),
-            weight = 450,
+            Weight = 450,
             BreedId = b[12].Id,
             Breed = b[12],
             OwnerId = o[3].Id,
@@ -733,7 +749,7 @@ public class VetClinicFixture
             Name = "Искра",
             Type = Species.Horse,
             BirthDate = new DateOnly(2021, 9, 15),
-            weight = 420,
+            Weight = 420,
             BreedId = b[13].Id,
             Breed = b[13],
             OwnerId = o[6].Id,
@@ -745,21 +761,21 @@ public class VetClinicFixture
             Name = "Тайфун",
             Type = Species.Horse,
             BirthDate = new DateOnly(2020, 6, 30),
-            weight = 510,
+            Weight = 510,
             BreedId = b[14].Id,
             Breed = b[14],
             OwnerId = o[9].Id,
             Owner = o[9]
         },
-    
-        
+
+
         new Pet
         {
             Id = 15,
             Name = "Мурзик",
             Type = Species.Cat,
             BirthDate = new DateOnly(2020, 4, 10),
-            weight = 6,
+            Weight = 6,
             BreedId = b[0].Id,
             Breed = b[0],
             OwnerId = o[10].Id,
@@ -771,7 +787,7 @@ public class VetClinicFixture
             Name = "Боцик",
             Type = Species.Horse,
             BirthDate = new DateOnly(2023, 9, 15),
-            weight = 375,
+            Weight = 375,
             BreedId = b[13].Id,
             Breed = b[13],
             OwnerId = o[10].Id,
@@ -786,9 +802,9 @@ public class VetClinicFixture
     /// </summary>
     private List<Appointment> GetAppointmentsList()
     {
-        var p = Pets;
-        var v = Vets;
-        var s = Services;
+        List<Pet> p = Pets;
+        List<Vet> v = Vets;
+        List<Service> s = Services;
         return [
         new Appointment
         {

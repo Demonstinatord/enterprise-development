@@ -1,34 +1,29 @@
-﻿using System;
-using System.Linq;
-using VetClinic.Domain;
+﻿using VetClinic.Domain.Entities;
+using VetClinic.Domain.Enums;
 using VetClinic.Tests.Fixtures;
-using Xunit;
 
 namespace VetClinic.Tests;
 
 /// <summary>
 /// Класс отвечающий за тестирование связности домена
 /// </summary>
-public class ClinicIntegrityTests : IClassFixture<VetClinicFixture>
+public class ClinicIntegrityTests(VetClinicFixture fixture) : IClassFixture<VetClinicFixture>
 {
-    private readonly VetClinicFixture _fixture;
 
-    public ClinicIntegrityTests(VetClinicFixture fixture)
-    {
-        _fixture = fixture;
-    }
 
-    [Fact]
+
+
+
 
     /// <summary>
     /// Функция, проверяющая, заполнено ли поле владельца и животного и
     /// проверяющая соответсвие поля владельца в таблицах приёмов и питомцев
     /// </summary>
-
+    [Fact]
     public void EveryAppointmentShouldHaveValidAndMatchingPetAndOwner()
     {
 
-        foreach (var appointment in _fixture.Appointments)
+        foreach (Appointment appointment in fixture.Appointments)
         {
             Assert.NotNull(appointment.Pet);
             Assert.NotNull(appointment.Pet.Owner);
@@ -43,7 +38,7 @@ public class ClinicIntegrityTests : IClassFixture<VetClinicFixture>
     /// </summary>
     public void PetSpeciesShouldStrictlyMatchItsBreedTargetSpecies()
     {
-        foreach (var pet in _fixture.Pets)
+        foreach (Pet pet in fixture.Pets)
         {
             Assert.NotNull(pet.Breed);
             Assert.Equal(pet.BreedId, pet.Breed.Id);
@@ -58,7 +53,7 @@ public class ClinicIntegrityTests : IClassFixture<VetClinicFixture>
     public void AppointmentVetShouldBeSpecializedInAppointmentPetType()
 
     {
-        foreach (var appointment in _fixture.Appointments)
+        foreach (Appointment appointment in fixture.Appointments)
         {
             Assert.NotNull(appointment.Vet);
             Assert.NotNull(appointment.Pet);
