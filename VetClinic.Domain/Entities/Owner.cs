@@ -20,5 +20,4 @@ public class Owner
     /// Адрес владельца 
     /// </summary>
     public required string Adress { get; set; }
-
 }
