@@ -25,7 +25,7 @@ public class ClinicIntegrityTests(VetClinicFixture fixture) : IClassFixture<VetC
     }
 
     /// <summary>
-    /// Функция, проверяющая соответсвие породы животного и его вида
+    /// Функция, проверяющая соответствие породы животного и его вида
     /// </summary>
     [Fact]
     public void PetSpeciesShouldStrictlyMatchItsBreedTargetSpecies()
