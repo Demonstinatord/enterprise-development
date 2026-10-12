@@ -18,6 +18,7 @@ public class ClinicDomainTests(VetClinicFixture fixture, ITestOutputHelper outpu
     public void FindAllVetsForSpecificAnimalType()
     {
         var specificAnimalType = Species.Cat;
+        var expectedNumber = 2;
         var vets = fixture.Vets
             .Where(v => v.Specialization.TargetSpecies == specificAnimalType)
             .ToList();
@@ -27,7 +28,7 @@ public class ClinicDomainTests(VetClinicFixture fixture, ITestOutputHelper outpu
             output.WriteLine($"ID: {v.Id} | Врач: {v.FullName} | Стаж: {v.ExpirienceYears} лет | Специализация: {v.Specialization.Title}");
         }
 
-        Assert.Equal(2, vets.Count);
+        Assert.Equal(expectedNumber, vets.Count);
         Assert.Contains(fixture.Vets[0], vets);
         Assert.Contains(fixture.Vets[1], vets);
     }
@@ -40,6 +41,7 @@ public class ClinicDomainTests(VetClinicFixture fixture, ITestOutputHelper outpu
     public void FindAllPetsForSpecificVetsAndSortByName()
     {
         var specificVet = fixture.Vets[0];
+        var expectedNumber = 2;
         var matchedPets = fixture.Appointments
             .Where(a => a.Vet == specificVet)
             .Select(a => a.Pet)
@@ -54,7 +56,7 @@ public class ClinicDomainTests(VetClinicFixture fixture, ITestOutputHelper outpu
             output.WriteLine("");
         }
 
-        Assert.Equal(2, matchedPets.Count);
+        Assert.Equal(expectedNumber, matchedPets.Count);
         Assert.Contains(fixture.Pets[0], matchedPets);
         Assert.Contains(fixture.Pets[1], matchedPets);
     }
@@ -118,12 +120,13 @@ public class ClinicDomainTests(VetClinicFixture fixture, ITestOutputHelper outpu
     public void FindAppointmentsInSpecificRoomsInSpecificMonth()
     {
         var specificRoom = 102;
+        var specificYear = 2026;
         var specificMonth = 9;
 
         var appointments = fixture.Appointments
             .Where(appointment =>
                 appointment.RoomNumber == specificRoom &&
-                appointment.DateTime.Year == 2026 &&
+                appointment.DateTime.Year == specificYear &&
                 appointment.DateTime.Month == specificMonth);
 
         foreach (var a in appointments)
@@ -138,5 +141,3 @@ public class ClinicDomainTests(VetClinicFixture fixture, ITestOutputHelper outpu
         Assert.Contains(fixture.Appointments[7], appointments);
     }
 }
-
-

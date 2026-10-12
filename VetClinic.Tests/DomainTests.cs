@@ -51,4 +51,3 @@ public class ClinicIntegrityTests(VetClinicFixture fixture) : IClassFixture<VetC
         }
     }
 }
-
