@@ -32,5 +32,4 @@ public class Vet
     /// Ссылка на специализацию врача
     /// </summary>
     public required Specialization Specialization { get; set; }
-
 }

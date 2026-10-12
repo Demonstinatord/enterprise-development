@@ -15,7 +15,7 @@ public class Breed
     /// </summary>
     public required string Title { get; set; }
     /// <summary>
-    /// Ссылка на соответсвующий вид животного 
+    /// Ссылка на соответствующий вид животного 
     /// </summary>
     public required Species Type { get; set; }
 }

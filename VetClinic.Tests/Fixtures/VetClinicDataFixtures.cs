@@ -2,6 +2,7 @@ using VetClinic.Domain.Entities;
 using VetClinic.Domain.Enums;
 
 namespace VetClinic.Tests.Fixtures;
+
 /// <summary>
 /// Класс, отвечающий за создание тестовых данных
 /// </summary>
@@ -11,62 +12,63 @@ public class VetClinicFixture
     /// Список пород животных
     /// </summary>
     public List<Breed> Breeds { get; }
+
     /// <summary>
     /// Список владельцев
     /// </summary>
     public List<Owner> Owners { get; }
+
     /// <summary>
     /// Список специализацией
     /// </summary>
     public List<Specialization> Specializations { get; }
+
     /// <summary>
     /// Список врачей
     /// </summary>
     public List<Vet> Vets { get; }
+
     /// <summary>
     /// Список услуг
     /// </summary>
     public List<Service> Services { get; }
+
     /// <summary>
     /// Список животных
     /// </summary>
     public List<Pet> Pets { get; }
+
     /// <summary>
     /// Список приёмов
     /// </summary>
     public List<Appointment> Appointments { get; }
+
     /// <summary>
     /// Функция, создающая списки объектов
     /// </summary>
     public VetClinicFixture()
     {
-        /// <summary>  
-        /// Объявляем независимые справочники
-        /// </summary>
+        // Объявляем независимые справочники
         Breeds = GetBreedsList();
         Owners = GetOwnersList();
         Specializations = GetSpecializationsList();
-        /// <summary>
-        /// Затем объявляем врачей и услуги (они зависят только от enum Species)
-        /// </summary> 
+
+        // Затем объявляем врачей и услуги (они зависят только от enum Species)
         Vets = GetVetsList();
         Services = GetServicesList();
-        /// <summary>
-        /// Питомцы собираются из Владельцев и Пород
-        /// </summary>
+
+        // Питомцы собираются из Владельцев и Пород
         Pets = GetPetsList();
-        /// <summary>  
-        /// Приемы связывают воедино Питомцев, Врачей и Услуги
-        /// </summary>
+
+        // Приемы связывают воедино Питомцев, Врачей и Услуги
         Appointments = GetAppointmentsList();
     }
+
     /// <summary>
     /// Функция, создающая список пород животных
     /// </summary>
-    private List<Breed> GetBreedsList()
-    {
-        return [
-
+    private List<Breed> GetBreedsList() =>
+    [
         new Breed
         {
             Id = 0,
@@ -79,13 +81,14 @@ public class VetClinicFixture
             Title = "Сиамская",
             Type = Species.Cat
         },
-        new Breed {
+        new Breed
+        {
             Id = 2,
             Title = "Британская короткошерстная",
             Type = Species.Cat
         },
-
-        new Breed {
+        new Breed
+        {
             Id = 3,
             Title = "Немецкая овчарка",
             Type = Species.Dog
@@ -102,7 +105,6 @@ public class VetClinicFixture
             Title = "Джек-рассел-терьер",
             Type = Species.Dog
         },
-
         new Breed
         {
             Id = 6,
@@ -157,16 +159,13 @@ public class VetClinicFixture
             Title = "Фризская",
             Type = Species.Horse
         }
-];
-    }
+    ];
 
     /// <summary>
     /// Функция, создающая список владельцев
     /// </summary>
-
-    private List<Owner> GetOwnersList()
-    {
-        return [
+    private List<Owner> GetOwnersList() =>
+    [
         new Owner
         {
             Id = 0,
@@ -245,90 +244,79 @@ public class VetClinicFixture
             Adress = "ул. Первомайская, д. 23"
         }
     ];
-    }
 
     /// <summary>
     /// Функция, создающая список специализаций
     /// </summary>
-    private List<Specialization> GetSpecializationsList()
-    {
-        return [
-
-    new Specialization
-    {
-        Id = 0,
-        Title = "Терапевт-фелинолог",
-        TargetSpecies = Species.Cat
-    },
-    new Specialization
-    {
-        Id = 1,
-        Title = "Хирург-онколог кошачьих отделений",
-        TargetSpecies = Species.Cat
-    },
-
-    new Specialization
-    {
-        Id = 2,
-        Title = "Кинолог-терапевт",
-        TargetSpecies = Species.Dog
-    },
-    new Specialization
-    {
-        Id = 3,
-        Title = "Травматолог-ортопед собак крупных пород",
-        TargetSpecies = Species.Dog
-    },
-
-    new Specialization
-    {
-        Id = 4,
-        Title = "Ветеринар-орнитолог",
-        TargetSpecies = Species.Pigeon
-    },
-    new Specialization
-    {
-        Id = 5,
-        Title = "Хирург-авиарлог",
-        TargetSpecies = Species.Pigeon
-    },
-
-    new Specialization
-    {
-        Id = 6,
-        Title = "Ветеринар-ратолог",
-        TargetSpecies = Species.Rabbit
-    },
-    new Specialization
-    {
-        Id = 7,
-        Title = "Стоматолог-родентолог",
-        TargetSpecies = Species.Rabbit
-    },
-
-    new Specialization
-    {
-        Id = 8,
-        Title = "Ветеринар-ипполог",
-        TargetSpecies = Species.Horse
-    },
-    new Specialization
-    {
-        Id = 9,
-        Title = "Ортопед-подолог",
-        TargetSpecies = Species.Horse
-    }
-];
-    }
+    private List<Specialization> GetSpecializationsList() =>
+    [
+        new Specialization
+        {
+            Id = 0,
+            Title = "Терапевт-фелинолог",
+            TargetSpecies = Species.Cat
+        },
+        new Specialization
+        {
+            Id = 1,
+            Title = "Хирург-онколог кошачьих отделений",
+            TargetSpecies = Species.Cat
+        },
+        new Specialization
+        {
+            Id = 2,
+            Title = "Кинолог-терапевт",
+            TargetSpecies = Species.Dog
+        },
+        new Specialization
+        {
+            Id = 3,
+            Title = "Травматолог-ортопед собак крупных пород",
+            TargetSpecies = Species.Dog
+        },
+        new Specialization
+        {
+            Id = 4,
+            Title = "Ветеринар-орнитолог",
+            TargetSpecies = Species.Pigeon
+        },
+        new Specialization
+        {
+            Id = 5,
+            Title = "Хирург-авиарлог",
+            TargetSpecies = Species.Pigeon
+        },
+        new Specialization
+        {
+            Id = 6,
+            Title = "Ветеринар-ратолог",
+            TargetSpecies = Species.Rabbit
+        },
+        new Specialization
+        {
+            Id = 7,
+            Title = "Стоматолог-родентолог",
+            TargetSpecies = Species.Rabbit
+        },
+        new Specialization
+        {
+            Id = 8,
+            Title = "Ветеринар-ипполог",
+            TargetSpecies = Species.Horse
+        },
+        new Specialization
+        {
+            Id = 9,
+            Title = "Ортопед-подолог",
+            TargetSpecies = Species.Horse
+        }
+    ];
 
     /// <summary>
     /// Функция, создающая список ветеринаров
     /// </summary>
-    private List<Vet> GetVetsList()
-    {
-        return [
-
-
+    private List<Vet> GetVetsList() =>
+    [
         new Vet
         {
             Id = 0,
@@ -339,8 +327,8 @@ public class VetClinicFixture
             SpecializationId = 0,
             Specialization = Specializations[0]
         },
-
-        new Vet {
+        new Vet
+        {
             Id = 1,
             FullName = "Др. Степан Котов",
             PassportNumber = "4511 222222",
@@ -349,8 +337,8 @@ public class VetClinicFixture
             SpecializationId = 1,
             Specialization = Specializations[1]
         },
-
-        new Vet {
+        new Vet
+        {
             Id = 2,
             FullName = "Др. Елена Быкова",
             PassportNumber = "4512 333333",
@@ -359,8 +347,8 @@ public class VetClinicFixture
             SpecializationId = 2,
             Specialization = Specializations[2]
         },
-
-        new Vet {
+        new Vet
+        {
             Id = 3,
             FullName = "Др. Михаил Шариков",
             PassportNumber = "4512 444444",
@@ -369,8 +357,8 @@ public class VetClinicFixture
             SpecializationId = 3,
             Specialization = Specializations[3]
         },
-
-        new Vet {
+        new Vet
+        {
             Id = 4,
             FullName = "Др. Анна Смит",
             PassportNumber = "4514 777777",
@@ -379,8 +367,8 @@ public class VetClinicFixture
             SpecializationId = 4,
             Specialization = Specializations[4]
         },
-
-        new Vet {
+        new Vet
+        {
             Id = 5,
             FullName = "Др. Григорий Птицын",
             PassportNumber = "4514 888888",
@@ -389,7 +377,6 @@ public class VetClinicFixture
             SpecializationId = 5,
             Specialization = Specializations[5]
         },
-
         new Vet
         {
             Id = 6,
@@ -430,25 +417,20 @@ public class VetClinicFixture
             SpecializationId = 9,
             Specialization = Specializations[9]
         }
-];
-    }
+    ];
 
     /// <summary>
     /// Функция, создающая список услуг
     /// </summary>
-
-    private List<Service> GetServicesList()
-    {
-        List<Specialization> s = Specializations;
-
-        return [
+    private List<Service> GetServicesList() =>
+    [
         new Service
         {
             Id = 0,
             Title = "Первичный осмотр и термометрия кошек",
             Price = 1000m,
             SpecializationId = 1,
-            Specialization = s[0]
+            Specialization = Specializations[0]
         },
         new Service
         {
@@ -456,7 +438,7 @@ public class VetClinicFixture
             Title = "Комплексная вакцинация кошачьих",
             Price = 1500m,
             SpecializationId = 1,
-            Specialization = s[0]
+            Specialization = Specializations[0]
         },
         new Service
         {
@@ -464,16 +446,15 @@ public class VetClinicFixture
             Title = "Гигиеническая чистка зубов кошкам",
             Price = 1800m,
             SpecializationId = 1,
-            Specialization = s[0]
+            Specialization = Specializations[0]
         },
-
         new Service
         {
             Id = 3,
             Title = "Клинический осмотр и консультация собак",
             Price = 1200m,
             SpecializationId = 3,
-            Specialization = s[2]
+            Specialization = Specializations[2]
         },
         new Service
         {
@@ -481,7 +462,7 @@ public class VetClinicFixture
             Title = "Комплексная вакцинация собак (с бешенством)",
             Price = 1700m,
             SpecializationId = 3,
-            Specialization = s[2]
+            Specialization = Specializations[2]
         },
         new Service
         {
@@ -489,16 +470,15 @@ public class VetClinicFixture
             Title = "УЗИ органов брюшной полости собак",
             Price = 2500m,
             SpecializationId = 3,
-            Specialization = s[2]
+            Specialization = Specializations[2]
         },
-
         new Service
         {
             Id = 6,
             Title = "Осмотр птицы и микроскопия мазка",
             Price = 900m,
             SpecializationId = 5,
-            Specialization = s[4]
+            Specialization = Specializations[4]
         },
         new Service
         {
@@ -506,7 +486,7 @@ public class VetClinicFixture
             Title = "Коррекция (подрезка) переросшего клюва",
             Price = 800m,
             SpecializationId = 5,
-            Specialization = s[4]
+            Specialization = Specializations[4]
         },
         new Service
         {
@@ -514,16 +494,15 @@ public class VetClinicFixture
             Title = "Лабораторный анализ оперения на паразитов",
             Price = 1100m,
             SpecializationId = 5,
-            Specialization = s[4]
+            Specialization = Specializations[4]
         },
-
         new Service
         {
             Id = 9,
             Title = "Прием ратолога и визуальная диагностика",
             Price = 950m,
             SpecializationId = 7,
-            Specialization = s[6]
+            Specialization = Specializations[6]
         },
         new Service
         {
@@ -531,7 +510,7 @@ public class VetClinicFixture
             Title = "Коррекция и подпилка резцов у грызунов",
             Price = 1300m,
             SpecializationId = 7,
-            Specialization = s[6]
+            Specialization = Specializations[6]
         },
         new Service
         {
@@ -539,17 +518,15 @@ public class VetClinicFixture
             Title = "Вакцинация кроликов от ВГБК и миксоматоза",
             Price = 1100m,
             SpecializationId = 7,
-            Specialization = s[6]
+            Specialization = Specializations[6]
         },
-
-
         new Service
         {
             Id = 12,
             Title = "Выездной осмотр и аускультация лошади",
             Price = 4000m,
             SpecializationId = 9,
-            Specialization = s[8]
+            Specialization = Specializations[8]
         },
         new Service
         {
@@ -557,7 +534,7 @@ public class VetClinicFixture
             Title = "Расчистка и ортопедическая обработка копыт",
             Price = 5000m,
             SpecializationId = 9,
-            Specialization = s[8]
+            Specialization = Specializations[8]
         },
         new Service
         {
@@ -565,20 +542,15 @@ public class VetClinicFixture
             Title = "Рентгенография конечностей лошади",
             Price = 6500m,
             SpecializationId = 9,
-            Specialization = s[8]
+            Specialization = Specializations[8]
         }
-        ];
-    }
+    ];
 
     /// <summary>
     /// Функция, создающая список питомцев
     /// </summary>
-    private List<Pet> GetPetsList()
-    {
-        List<Owner> o = Owners;
-        List<Breed> b = Breeds;
-
-        List<Pet> list = [
+    private List<Pet> GetPetsList() =>
+    [
         new Pet
         {
             Id = 0,
@@ -586,10 +558,10 @@ public class VetClinicFixture
             Type = Species.Cat,
             BirthDate = new DateOnly(2022, 4, 10),
             Weight = 6.5m,
-            BreedId = b[0].Id,
-            Breed = b[0],
-            OwnerId = o[0].Id,
-            Owner = o[0]
+            BreedId = Breeds[0].Id,
+            Breed = Breeds[0],
+            OwnerId = Owners[0].Id,
+            Owner = Owners[0]
         },
         new Pet
         {
@@ -598,10 +570,10 @@ public class VetClinicFixture
             Type = Species.Cat,
             BirthDate = new DateOnly(2023, 6, 15),
             Weight = 4,
-            BreedId = b[1].Id,
-            Breed = b[1],
-            OwnerId = o[1].Id,
-            Owner = o[1]
+            BreedId = Breeds[1].Id,
+            Breed = Breeds[1],
+            OwnerId = Owners[1].Id,
+            Owner = Owners[1]
         },
         new Pet
         {
@@ -610,13 +582,11 @@ public class VetClinicFixture
             Type = Species.Cat,
             BirthDate = new DateOnly(2025, 1, 20),
             Weight = 4.8m,
-            BreedId = b[2].Id,
-            Breed = b[2],
-            OwnerId = o[2].Id,
-            Owner = o[2]
+            BreedId = Breeds[2].Id,
+            Breed = Breeds[2],
+            OwnerId = Owners[2].Id,
+            Owner = Owners[2]
         },
-
-
         new Pet
         {
             Id = 3,
@@ -624,10 +594,10 @@ public class VetClinicFixture
             Type = Species.Dog,
             BirthDate = new DateOnly(2020, 11, 5),
             Weight = 30.5m,
-            BreedId = b[3].Id,
-            Breed = b[3],
-            OwnerId = o[0].Id,
-            Owner = o[0]
+            BreedId = Breeds[3].Id,
+            Breed = Breeds[3],
+            OwnerId = Owners[0].Id,
+            Owner = Owners[0]
         },
         new Pet
         {
@@ -636,10 +606,10 @@ public class VetClinicFixture
             Type = Species.Dog,
             BirthDate = new DateOnly(2021, 8, 25),
             Weight = 28.5m,
-            BreedId = b[4].Id,
-            Breed = b[4],
-            OwnerId = o[3].Id,
-            Owner = o[3]
+            BreedId = Breeds[4].Id,
+            Breed = Breeds[4],
+            OwnerId = Owners[3].Id,
+            Owner = Owners[3]
         },
         new Pet
         {
@@ -648,12 +618,11 @@ public class VetClinicFixture
             Type = Species.Dog,
             BirthDate = new DateOnly(2024, 3, 14),
             Weight = 8.7m,
-            BreedId = b[5].Id,
-            Breed = b[5],
-            OwnerId = o[4].Id,
-            Owner = o[4]
+            BreedId = Breeds[5].Id,
+            Breed = Breeds[5],
+            OwnerId = Owners[4].Id,
+            Owner = Owners[4]
         },
-
         new Pet
         {
             Id = 6,
@@ -661,10 +630,10 @@ public class VetClinicFixture
             Type = Species.Pigeon,
             BirthDate = new DateOnly(2025, 5, 12),
             Weight = 0.65m,
-            BreedId = b[6].Id,
-            Breed = b[6],
-            OwnerId = o[5].Id,
-            Owner = o[5]
+            BreedId = Breeds[6].Id,
+            Breed = Breeds[6],
+            OwnerId = Owners[5].Id,
+            Owner = Owners[5]
         },
         new Pet
         {
@@ -673,10 +642,10 @@ public class VetClinicFixture
             Type = Species.Pigeon,
             BirthDate = new DateOnly(2024, 7, 19),
             Weight = 0.8m,
-            BreedId = b[7].Id,
-            Breed = b[7],
-            OwnerId = o[6].Id,
-            Owner = o[6]
+            BreedId = Breeds[7].Id,
+            Breed = Breeds[7],
+            OwnerId = Owners[6].Id,
+            Owner = Owners[6]
         },
         new Pet
         {
@@ -685,13 +654,11 @@ public class VetClinicFixture
             Type = Species.Pigeon,
             BirthDate = new DateOnly(2026, 2, 1),
             Weight = 1.15m,
-            BreedId = b[8].Id,
-            Breed = b[8],
-            OwnerId = o[7].Id,
-            Owner = o[7]
+            BreedId = Breeds[8].Id,
+            Breed = Breeds[8],
+            OwnerId = Owners[7].Id,
+            Owner = Owners[7]
         },
-
-
         new Pet
         {
             Id = 9,
@@ -699,10 +666,10 @@ public class VetClinicFixture
             Type = Species.Rabbit,
             BirthDate = new DateOnly(2023, 10, 1),
             Weight = 3.7m,
-            BreedId = b[9].Id,
-            Breed = b[9],
-            OwnerId = o[1].Id,
-            Owner = o[1]
+            BreedId = Breeds[9].Id,
+            Breed = Breeds[9],
+            OwnerId = Owners[1].Id,
+            Owner = Owners[1]
         },
         new Pet
         {
@@ -711,10 +678,10 @@ public class VetClinicFixture
             Type = Species.Rabbit,
             BirthDate = new DateOnly(2024, 12, 11),
             Weight = 2.3m,
-            BreedId = b[10].Id,
-            Breed = b[10],
-            OwnerId = o[8].Id,
-            Owner = o[8]
+            BreedId = Breeds[10].Id,
+            Breed = Breeds[10],
+            OwnerId = Owners[8].Id,
+            Owner = Owners[8]
         },
         new Pet
         {
@@ -723,14 +690,11 @@ public class VetClinicFixture
             Type = Species.Rabbit,
             BirthDate = new DateOnly(2025, 4, 3),
             Weight = 4.5m,
-            BreedId = b[11].Id,
-            Breed = b[11],
-            OwnerId = o[9].Id,
-            Owner = o[9]
+            BreedId = Breeds[11].Id,
+            Breed = Breeds[11],
+            OwnerId = Owners[9].Id,
+            Owner = Owners[9]
         },
-
-
-
         new Pet
         {
             Id = 12,
@@ -738,10 +702,10 @@ public class VetClinicFixture
             Type = Species.Horse,
             BirthDate = new DateOnly(2019, 5, 20),
             Weight = 450,
-            BreedId = b[12].Id,
-            Breed = b[12],
-            OwnerId = o[3].Id,
-            Owner = o[3]
+            BreedId = Breeds[12].Id,
+            Breed = Breeds[12],
+            OwnerId = Owners[3].Id,
+            Owner = Owners[3]
         },
         new Pet
         {
@@ -750,25 +714,23 @@ public class VetClinicFixture
             Type = Species.Horse,
             BirthDate = new DateOnly(2021, 9, 15),
             Weight = 420,
-            BreedId = b[13].Id,
-            Breed = b[13],
-            OwnerId = o[6].Id,
-            Owner = o[6]
+            BreedId = Breeds[13].Id,
+            Breed = Breeds[13],
+            OwnerId = Owners[6].Id,
+            Owner = Owners[6]
         },
         new Pet
         {
             Id = 14,
-            Name = "Тайфун",
+            Name = "Тайфон",
             Type = Species.Horse,
             BirthDate = new DateOnly(2020, 6, 30),
             Weight = 510,
-            BreedId = b[14].Id,
-            Breed = b[14],
-            OwnerId = o[9].Id,
-            Owner = o[9]
+            BreedId = Breeds[14].Id,
+            Breed = Breeds[14],
+            OwnerId = Owners[9].Id,
+            Owner = Owners[9]
         },
-
-
         new Pet
         {
             Id = 15,
@@ -776,10 +738,10 @@ public class VetClinicFixture
             Type = Species.Cat,
             BirthDate = new DateOnly(2020, 4, 10),
             Weight = 6,
-            BreedId = b[0].Id,
-            Breed = b[0],
-            OwnerId = o[10].Id,
-            Owner = o[10]
+            BreedId = Breeds[0].Id,
+            Breed = Breeds[0],
+            OwnerId = Owners[10].Id,
+            Owner = Owners[10]
         },
         new Pet
         {
@@ -788,24 +750,18 @@ public class VetClinicFixture
             Type = Species.Horse,
             BirthDate = new DateOnly(2023, 9, 15),
             Weight = 375,
-            BreedId = b[13].Id,
-            Breed = b[13],
-            OwnerId = o[10].Id,
-            Owner = o[10]
+            BreedId = Breeds[13].Id,
+            Breed = Breeds[13],
+            OwnerId = Owners[10].Id,
+            Owner = Owners[10]
         }
-        ];
-        return list;
-    }
+    ];
 
     /// <summary>
     /// Функция, создающая список приёмов
     /// </summary>
-    private List<Appointment> GetAppointmentsList()
-    {
-        List<Pet> p = Pets;
-        List<Vet> v = Vets;
-        List<Service> s = Services;
-        return [
+    private List<Appointment> GetAppointmentsList() =>
+    [
         new Appointment
         {
             Id = 0,
@@ -813,12 +769,12 @@ public class VetClinicFixture
             Diagnosis = "Здоров",
             RoomNumber = 101,
             RepeatVisitIndicator = RepeatVisitIndicator.Not,
-            PetId = p[0].Id,
-            Pet = p[0],
-            VetId = v[0].Id,
-            Vet = v[0],
-            ServiceId = s[0].Id,
-            Service = s[0]
+            PetId = Pets[0].Id,
+            Pet = Pets[0],
+            VetId = Vets[0].Id,
+            Vet = Vets[0],
+            ServiceId = Services[0].Id,
+            Service = Services[0]
         },
         new Appointment
         {
@@ -827,12 +783,12 @@ public class VetClinicFixture
             Diagnosis = "Здорова",
             RoomNumber = 103,
             RepeatVisitIndicator = RepeatVisitIndicator.Not,
-            PetId = p[1].Id,
-            Pet = p[1],
-            VetId = v[1].Id,
-            Vet = v[1],
-            ServiceId = s[0].Id,
-            Service = s[0]
+            PetId = Pets[1].Id,
+            Pet = Pets[1],
+            VetId = Vets[1].Id,
+            Vet = Vets[1],
+            ServiceId = Services[0].Id,
+            Service = Services[0]
         },
         new Appointment
         {
@@ -841,12 +797,12 @@ public class VetClinicFixture
             Diagnosis = "Зубной камень удален",
             RoomNumber = 101,
             RepeatVisitIndicator = RepeatVisitIndicator.Yes,
-            PetId = p[1].Id,
-            Pet = p[1],
-            VetId = v[0].Id,
-            Vet = v[0],
-            ServiceId = s[1].Id,
-            Service = s[1]
+            PetId = Pets[1].Id,
+            Pet = Pets[1],
+            VetId = Vets[0].Id,
+            Vet = Vets[0],
+            ServiceId = Services[1].Id,
+            Service = Services[1]
         },
         new Appointment
         {
@@ -855,14 +811,13 @@ public class VetClinicFixture
             Diagnosis = "Витамины прописаны",
             RoomNumber = 103,
             RepeatVisitIndicator = RepeatVisitIndicator.Not,
-            PetId = p[2].Id,
-            Pet = p[2],
-            VetId = v[1].Id,
-            Vet = v[1],
-            ServiceId = s[0].Id,
-            Service = s[0]
+            PetId = Pets[2].Id,
+            Pet = Pets[2],
+            VetId = Vets[1].Id,
+            Vet = Vets[1],
+            ServiceId = Services[0].Id,
+            Service = Services[0]
         },
-
         new Appointment
         {
             Id = 4,
@@ -870,12 +825,12 @@ public class VetClinicFixture
             Diagnosis = "Здоров",
             RoomNumber = 102,
             RepeatVisitIndicator = RepeatVisitIndicator.Not,
-            PetId = p[3].Id,
-            Pet = p[3],
-            VetId = v[2].Id,
-            Vet = v[2],
-            ServiceId = s[2].Id,
-            Service = s[2]
+            PetId = Pets[3].Id,
+            Pet = Pets[3],
+            VetId = Vets[2].Id,
+            Vet = Vets[2],
+            ServiceId = Services[2].Id,
+            Service = Services[2]
         },
         new Appointment
         {
@@ -884,12 +839,12 @@ public class VetClinicFixture
             Diagnosis = "Назначена диета",
             RoomNumber = 106,
             RepeatVisitIndicator = RepeatVisitIndicator.Not,
-            PetId = p[4].Id,
-            Pet = p[4],
-            VetId = v[3].Id,
-            Vet = v[3],
-            ServiceId = s[2].Id,
-            Service = s[2]
+            PetId = Pets[4].Id,
+            Pet = Pets[4],
+            VetId = Vets[3].Id,
+            Vet = Vets[3],
+            ServiceId = Services[2].Id,
+            Service = Services[2]
         },
         new Appointment
         {
@@ -898,12 +853,12 @@ public class VetClinicFixture
             Diagnosis = "Плановое УЗИ",
             RoomNumber = 102,
             RepeatVisitIndicator = RepeatVisitIndicator.Yes,
-            PetId = p[3].Id,
-            Pet = p[3],
-            VetId = v[2].Id,
-            Vet = v[2],
-            ServiceId = s[3].Id,
-            Service = s[3]
+            PetId = Pets[3].Id,
+            Pet = Pets[3],
+            VetId = Vets[2].Id,
+            Vet = Vets[2],
+            ServiceId = Services[3].Id,
+            Service = Services[3]
         },
         new Appointment
         {
@@ -912,14 +867,13 @@ public class VetClinicFixture
             Diagnosis = "Вакцинация выполнена",
             RoomNumber = 102,
             RepeatVisitIndicator = RepeatVisitIndicator.Not,
-            PetId = p[5].Id,
-            Pet = p[5],
-            VetId = v[2].Id,
-            Vet = v[2],
-            ServiceId = s[2].Id,
-            Service = s[2]
+            PetId = Pets[5].Id,
+            Pet = Pets[5],
+            VetId = Vets[2].Id,
+            Vet = Vets[2],
+            ServiceId = Services[2].Id,
+            Service = Services[2]
         },
-
         new Appointment
         {
             Id = 8,
@@ -927,12 +881,12 @@ public class VetClinicFixture
             Diagnosis = "Здоров",
             RoomNumber = 105,
             RepeatVisitIndicator = RepeatVisitIndicator.Not,
-            PetId = p[6].Id,
-            Pet = p[6],
-            VetId = v[4].Id,
-            Vet = v[4],
-            ServiceId = s[4].Id,
-            Service = s[4]
+            PetId = Pets[6].Id,
+            Pet = Pets[6],
+            VetId = Vets[4].Id,
+            Vet = Vets[4],
+            ServiceId = Services[4].Id,
+            Service = Services[4]
         },
         new Appointment
         {
@@ -941,12 +895,12 @@ public class VetClinicFixture
             Diagnosis = "Клюв в норме",
             RoomNumber = 107,
             RepeatVisitIndicator = RepeatVisitIndicator.Yes,
-            PetId = p[7].Id,
-            Pet = p[7],
-            VetId = v[5].Id,
-            Vet = v[5],
-            ServiceId = s[4].Id,
-            Service = s[4]
+            PetId = Pets[7].Id,
+            Pet = Pets[7],
+            VetId = Vets[5].Id,
+            Vet = Vets[5],
+            ServiceId = Services[4].Id,
+            Service = Services[4]
         },
         new Appointment
         {
@@ -955,14 +909,13 @@ public class VetClinicFixture
             Diagnosis = "Осмотр крыла",
             RoomNumber = 105,
             RepeatVisitIndicator = RepeatVisitIndicator.Not,
-            PetId = p[8].Id,
-            Pet = p[8],
-            VetId = v[4].Id,
-            Vet = v[4],
-            ServiceId = s[4].Id,
-            Service = s[4]
+            PetId = Pets[8].Id,
+            Pet = Pets[8],
+            VetId = Vets[4].Id,
+            Vet = Vets[4],
+            ServiceId = Services[4].Id,
+            Service = Services[4]
         },
-
         new Appointment
         {
             Id = 11,
@@ -970,12 +923,12 @@ public class VetClinicFixture
             Diagnosis = "Отрастание резцов",
             RoomNumber = 104,
             RepeatVisitIndicator = RepeatVisitIndicator.Not,
-            PetId = p[9].Id,
-            Pet = p[9],
-            VetId = v[6].Id,
-            Vet = v[6],
-            ServiceId = s[5].Id,
-            Service = s[5]
+            PetId = Pets[9].Id,
+            Pet = Pets[9],
+            VetId = Vets[6].Id,
+            Vet = Vets[6],
+            ServiceId = Services[5].Id,
+            Service = Services[5]
         },
         new Appointment
         {
@@ -984,28 +937,27 @@ public class VetClinicFixture
             Diagnosis = "Зубы в порядке",
             RoomNumber = 108,
             RepeatVisitIndicator = RepeatVisitIndicator.Yes,
-            PetId = p[10].Id,
-            Pet = p[10],
-            VetId = v[7].Id,
-            Vet = v[7],
-            ServiceId = s[5].Id,
-            Service = s[5]
+            PetId = Pets[10].Id,
+            Pet = Pets[10],
+            VetId = Vets[7].Id,
+            Vet = Vets[7],
+            ServiceId = Services[5].Id,
+            Service = Services[5]
         },
         new Appointment
         {
             Id = 13,
-            DateTime = new DateTime(2026, 10, 17, 09, 30, 0),
+            DateTime = new DateTime(2026, 10, 17, 9, 30, 0),
             Diagnosis = "Здоров",
             RoomNumber = 104,
             RepeatVisitIndicator = RepeatVisitIndicator.Not,
-            PetId = p[11].Id,
-            Pet = p[11],
-            VetId = v[6].Id,
-            Vet = v[6],
-            ServiceId = s[5].Id,
-            Service = s[5]
+            PetId = Pets[11].Id,
+            Pet = Pets[11],
+            VetId = Vets[6].Id,
+            Vet = Vets[6],
+            ServiceId = Services[5].Id,
+            Service = Services[5]
         },
-
         new Appointment
         {
             Id = 14,
@@ -1013,12 +965,12 @@ public class VetClinicFixture
             Diagnosis = "Профилактика копыт",
             RoomNumber = 109,
             RepeatVisitIndicator = RepeatVisitIndicator.Not,
-            PetId = p[12].Id,
-            Pet = p[12],
-            VetId = v[8].Id,
-            Vet = v[8],
-            ServiceId = s[6].Id,
-            Service = s[6]
+            PetId = Pets[12].Id,
+            Pet = Pets[12],
+            VetId = Vets[8].Id,
+            Vet = Vets[8],
+            ServiceId = Services[6].Id,
+            Service = Services[6]
         },
         new Appointment
         {
@@ -1027,12 +979,12 @@ public class VetClinicFixture
             Diagnosis = "Профилактика копыт",
             RoomNumber = 109,
             RepeatVisitIndicator = RepeatVisitIndicator.Not,
-            PetId =p[16].Id,
-            Pet=p[16],
-            VetId = v[8].Id,
-            Vet=v[8],
-            ServiceId = s[6].Id,
-            Service=s[6]
+            PetId = Pets[16].Id,
+            Pet = Pets[16],
+            VetId = Vets[8].Id,
+            Vet = Vets[8],
+            ServiceId = Services[6].Id,
+            Service = Services[6]
         },
         new Appointment
         {
@@ -1041,14 +993,12 @@ public class VetClinicFixture
             Diagnosis = "Здоров",
             RoomNumber = 103,
             RepeatVisitIndicator = RepeatVisitIndicator.Yes,
-            PetId = p[15].Id,
-            Pet = p[15],
-            VetId = v[1].Id,
-            Vet = v[1],
-            ServiceId = s[0].Id,
-            Service = s[0]
-        },
-        ];
-    }
-
+            PetId = Pets[15].Id,
+            Pet = Pets[15],
+            VetId = Vets[1].Id,
+            Vet = Vets[1],
+            ServiceId = Services[0].Id,
+            Service = Services[0]
+        }
+    ];
 }

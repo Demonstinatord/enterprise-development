@@ -1,5 +1,4 @@
 ﻿using VetClinic.Domain.Entities;
-using VetClinic.Domain.Enums;
 using VetClinic.Tests.Fixtures;
 
 namespace VetClinic.Tests;
@@ -9,20 +8,13 @@ namespace VetClinic.Tests;
 /// </summary>
 public class ClinicIntegrityTests(VetClinicFixture fixture) : IClassFixture<VetClinicFixture>
 {
-
-
-
-
-
-
     /// <summary>
     /// Функция, проверяющая, заполнено ли поле владельца и животного и
-    /// проверяющая соответсвие поля владельца в таблицах приёмов и питомцев
+    /// проверяющая соответствие поля владельца в таблицах приёмов и питомцев
     /// </summary>
     [Fact]
     public void EveryAppointmentShouldHaveValidAndMatchingPetAndOwner()
     {
-
         foreach (Appointment appointment in fixture.Appointments)
         {
             Assert.NotNull(appointment.Pet);
@@ -32,26 +24,24 @@ public class ClinicIntegrityTests(VetClinicFixture fixture) : IClassFixture<VetC
         }
     }
 
-    [Fact]
     /// <summary>
     /// Функция, проверяющая соответсвие породы животного и его вида
     /// </summary>
+    [Fact]
     public void PetSpeciesShouldStrictlyMatchItsBreedTargetSpecies()
     {
-        foreach (Pet pet in fixture.Pets)
+        foreach (var pet in fixture.Pets)
         {
             Assert.NotNull(pet.Breed);
             Assert.Equal(pet.BreedId, pet.Breed.Id);
             Assert.Equal(pet.Type, pet.Breed.Type);
         }
     }
-
-    [Fact]
     /// <summary>
     /// Функция, проверяющая соответствие специализации врача и вида животного
     /// </summary>
+    [Fact]
     public void AppointmentVetShouldBeSpecializedInAppointmentPetType()
-
     {
         foreach (Appointment appointment in fixture.Appointments)
         {
