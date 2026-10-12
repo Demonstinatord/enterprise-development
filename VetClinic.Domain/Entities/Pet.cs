@@ -42,6 +42,4 @@ public class Pet
     /// Ссылка на владельца питомца 
     /// </summary>
     public required Owner Owner { get; set; }
-
-
 }
