@@ -95,6 +95,16 @@ public class ClinicDomainTests(VetClinicFixture fixture, ITestOutputHelper outpu
     [Fact]
     public void FindOwnersWithMultiplePets()
     {
+        List<Owner> expectedOwners =
+        [
+            fixture.Owners[0],
+            fixture.Owners[10],
+            fixture.Owners[3],
+            fixture.Owners[9],
+            fixture.Owners[1],
+            fixture.Owners[6]
+        ];
+
         var owners = fixture.Owners
             .Where(owner => fixture.Pets.Count(pet => pet.Owner.Id == owner.Id) > 1)
             .OrderBy(owner => owner.FullName);
@@ -105,12 +115,7 @@ public class ClinicDomainTests(VetClinicFixture fixture, ITestOutputHelper outpu
         }
 
         Assert.NotEmpty(owners);
-        Assert.Contains(fixture.Owners[0], owners);
-        Assert.Contains(fixture.Owners[1], owners);
-        Assert.Contains(fixture.Owners[3], owners);
-        Assert.Contains(fixture.Owners[6], owners);
-        Assert.Contains(fixture.Owners[9], owners);
-        Assert.Contains(fixture.Owners[10], owners);
+        Assert.Equal(expectedOwners, owners);
     }
 
     /// <summary>
