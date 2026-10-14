@@ -68,7 +68,13 @@ public class ClinicDomainTests(VetClinicFixture fixture, ITestOutputHelper outpu
     [Fact]
     public void FindNumberOfSecondaryVisitForSpecificAnimalBreed()
     {
-        Breed specificAnimalBreed = fixture.Breeds[10];
+        var specificAnimalBreed = fixture.Breeds[10];
+
+        List<Pet> expectedAnimals =
+        [
+            fixture.Pets[10] // в данном конкретном случае ожидаемый список состоит из одного значения
+        ];
+
 
         var matchedPets = fixture.Appointments
             .Where(a => a.Pet.Breed == specificAnimalBreed && a.RepeatVisitIndicator == RepeatVisitIndicator.Yes)
@@ -87,6 +93,7 @@ public class ClinicDomainTests(VetClinicFixture fixture, ITestOutputHelper outpu
         output.WriteLine($" Кол-во питомцев: {matchedPets.Count}");
         Assert.NotEmpty(matchedPets);
         Assert.Single(matchedPets);
+        Assert.Equal(expectedAnimals, matchedPets);
     }
 
     /// <summary>
