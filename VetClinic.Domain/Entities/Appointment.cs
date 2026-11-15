@@ -1,6 +1,6 @@
 namespace VetClinic.Domain.Entities;
 
-using VetClinic.Domain.Enums;
+using VetClinic.Domain.Shared.Enums;
 /// <summary>
 /// Записи на приём
 /// </summary>

@@ -1,4 +1,4 @@
-﻿namespace VetClinic.Domain.Enums;
+﻿namespace VetClinic.Domain.Shared.Enums;
 /// <summary>
 /// Индикатор повторного визита
 /// </summary>

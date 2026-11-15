@@ -1,8 +1,6 @@
 ﻿using VetClinic.Domain.Entities;
-using VetClinic.Domain.Enums;
+using VetClinic.Domain.Shared.Enums;
 using VetClinic.Tests.Fixtures;
-
-
 namespace VetClinic.Tests;
 
 /// <summary>

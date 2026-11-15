@@ -1,6 +1,6 @@
 ﻿namespace VetClinic.Domain.Entities;
 
-using VetClinic.Domain.Enums;
+using VetClinic.Domain.Shared.Enums;
 /// <summary>
 /// Специализация врачей и оказываемых услуг
 /// </summary>
