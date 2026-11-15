@@ -11,7 +11,7 @@ namespace VetClinic.Api.Host.Controllers;
 /// <param name="logger">Логгер</param>
 [ApiController]
 [Route("api/[controller]")]
-public class AnalyticsController(IAnalyticService service, ILogger<AnalyticsController> logger) : ControllerBase
+public class AnalyticController(IAnalyticService service, ILogger<AnalyticController> logger) : ControllerBase
 {
     /// <summary>
     /// Получает список ветеринаров, специализирующихся на выбранном виде животных

@@ -7,5 +7,5 @@ namespace VetClinic.Api.Host.Controllers;
 /// </summary>
 /// <param name="service">Сервис управления породами</param>
 /// <param name="logger">Логгер контроллера пород</param>
-public class BreedsController(IBreedAppService service, ILogger<BreedsController> logger)
+public class BreedController(IBreedAppService service, ILogger<BreedController> logger)
     : CrudControllerBase<BreedDto, BreedCreateUpdateDto, int>(service, logger);

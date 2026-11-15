@@ -7,5 +7,5 @@ namespace VetClinic.Api.Host.Controllers;
 /// </summary>
 /// <param name="service">Сервис управления клиентами клиники</param>
 /// <param name="logger">Логгер контроллера владельцев</param>
-public class OwnersController(IOwnerAppService service, ILogger<OwnersController> logger)
+public class OwnerController(IOwnerAppService service, ILogger<OwnerController> logger)
     : CrudControllerBase<OwnerDto, OwnerCreateUpdateDto, int>(service, logger);

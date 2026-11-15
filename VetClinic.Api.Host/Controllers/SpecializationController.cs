@@ -7,5 +7,5 @@ namespace VetClinic.Api.Host.Controllers;
 /// </summary>
 /// <param name="service">Сервис управления специализациями</param>
 /// <param name="logger">Логгер контроллера специализаций</param>
-public class SpecializationsController(ISpecializationAppService service, ILogger<SpecializationsController> logger)
+public class SpecializationController(ISpecializationAppService service, ILogger<SpecializationController> logger)
     : CrudControllerBase<SpecializationDto, SpecializationCreateUpdateDto, int>(service, logger);

@@ -8,7 +8,7 @@ namespace VetClinic.Api.Host.Controllers;
 /// </summary>
 /// <param name="service">Сервис управления врачами</param>
 /// <param name="logger">Логгер контроллера врачей</param>
-public class VetsController(IVetAppService service, ILogger<VetsController> logger)
+public class VetController(IVetAppService service, ILogger<VetController> logger)
     : CrudControllerBase<VetDto, VetCreateUpdateDto, int>(service, logger)
 {
     /// <summary>

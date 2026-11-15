@@ -7,7 +7,7 @@ namespace VetClinic.Api.Host.Controllers;
 /// </summary>
 /// <param name="service">Сервис управления приемами</param>
 /// <param name="logger">Логгер контроллера приемов</param>
-public class AppointmentsController(IAppointmentAppService service, ILogger<AppointmentsController> logger)
+public class AppointmentController(IAppointmentAppService service, ILogger<AppointmentController> logger)
     : CrudControllerBase<AppointmentDto, AppointmentCreateUpdateDto, int>(service, logger)
 {
     /// <summary>
