@@ -52,9 +52,9 @@ public class AppointmentAppService(
     {
         logger.LogInformation("Запрос: Оформление нового приема для питомца с Id {PetId}", dto.PetId);
 
-        var pet = await petRepository.Get(dto.PetId) ?? throw new Exception("Питомец не найден");
-        var vet = await vetRepository.Get(dto.VetId) ?? throw new Exception("Врач не найден");
-        var service = await serviceRepository.Get(dto.ServiceId) ?? throw new Exception("Услуга не найдена");
+        var pet = await petRepository.Get(dto.PetId) ?? throw new KeyNotFoundException("Питомец не найден");
+        var vet = await vetRepository.Get(dto.VetId) ?? throw new KeyNotFoundException("Врач не найден");
+        var service = await serviceRepository.Get(dto.ServiceId) ?? throw new KeyNotFoundException("Услуга не найдена");
 
         var entity = new Appointment
         {
@@ -82,9 +82,9 @@ public class AppointmentAppService(
     {
         logger.LogInformation("Запрос: Изменение параметров приема с Id {Id}", id);
 
-        var pet = await petRepository.Get(dto.PetId) ?? throw new Exception("Питомец не найден");
-        var vet = await vetRepository.Get(dto.VetId) ?? throw new Exception("Врач не найден");
-        var service = await serviceRepository.Get(dto.ServiceId) ?? throw new Exception("Услуга не найдена");
+        var pet = await petRepository.Get(dto.PetId) ?? throw new KeyNotFoundException("Питомец не найден");
+        var vet = await vetRepository.Get(dto.VetId) ?? throw new KeyNotFoundException("Врач не найден");
+        var service = await serviceRepository.Get(dto.ServiceId) ?? throw new KeyNotFoundException("Услуга не найдена");
 
         var entity = new Appointment
         {

@@ -1,4 +1,5 @@
 using Scalar.AspNetCore;
+using System.Text.Json.Serialization;
 using VetClinic.Application;
 using VetClinic.InMemory;
 // Инициализация билдера
@@ -12,7 +13,11 @@ builder.Services.AddLogging(logging =>
 });
 
 // Регистрация компонентов системы
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 builder.Services.AddOpenApi();
 
 // Автономное подключение инкапсулированных слоев через их собственные DI-модули
