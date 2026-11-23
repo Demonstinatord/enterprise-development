@@ -1,14 +1,12 @@
 using VetClinic.Domain.Entities;
 using VetClinic.Domain.Shared.Enums;
 
-namespace VetClinic.InMemory.Seeder;
+namespace VetClinic.Domain.Seeder;
 
 /// <summary>
 /// Изолированный сидер тестовых данных.
 /// Отвечает исключительно за хардкод эталонного датасета клиники.
 /// </summary>
-
-
 public class VetClinicDataSeeder
 {
     /// <summary>
@@ -22,7 +20,7 @@ public class VetClinicDataSeeder
     public List<Owner> Owners { get; init; }
 
     /// <summary>
-    /// Список специализацией
+    /// Список специализаций
     /// </summary>
     public List<Specialization> Specializations { get; init; }
 
@@ -46,30 +44,22 @@ public class VetClinicDataSeeder
     /// </summary>
     public List<Appointment> Appointments { get; init; }
 
-
     public (List<Specialization>, List<Breed>, List<Owner>, List<Vet>, List<Service>, List<Pet>, List<Appointment>) Deconstruct()
-    => (Specializations, Breeds, Owners, Vets, Services, Pets, Appointments);
-
+        => (Specializations, Breeds, Owners, Vets, Services, Pets, Appointments);
 
     /// <summary>
     /// Функция, создающая списки объектов
     /// </summary>
-
     public VetClinicDataSeeder()
     {
-        // Объявляем независимые справочники
         Breeds = GetBreedsList();
         Owners = GetOwnersList();
         Specializations = GetSpecializationsList();
 
-        // Затем объявляем врачей и услуги (они зависят только от enum Species)
         Vets = GetVetsList();
         Services = GetServicesList();
 
-        // Питомцы собираются из Владельцев и Пород
         Pets = GetPetsList();
-
-        // Приемы связывают воедино Питомцев, Врачей и Услуги
         Appointments = GetAppointmentsList();
     }
 
@@ -80,91 +70,91 @@ public class VetClinicDataSeeder
     [
         new Breed
         {
-            Id = 0,
+            Id = 1,
             Title = "Мейн-кун",
             Type = Species.Cat
         },
         new Breed
         {
-            Id = 1,
+            Id = 2,
             Title = "Сиамская",
             Type = Species.Cat
         },
         new Breed
         {
-            Id = 2,
+            Id = 3,
             Title = "Британская короткошерстная",
             Type = Species.Cat
         },
         new Breed
         {
-            Id = 3,
+            Id = 4,
             Title = "Немецкая овчарка",
             Type = Species.Dog
         },
         new Breed
         {
-            Id = 4,
+            Id = 5,
             Title = "Лабрадор-ретривер",
             Type = Species.Dog
         },
         new Breed
         {
-            Id = 5,
+            Id = 6,
             Title = "Джек-рассел-терьер",
             Type = Species.Dog
         },
         new Breed
         {
-            Id = 6,
+            Id = 7,
             Title = "Сизый голубь",
             Type = Species.Pigeon
         },
         new Breed
         {
-            Id = 7,
+            Id = 8,
             Title = "Почтовый белый",
             Type = Species.Pigeon
         },
         new Breed
         {
-            Id = 8,
+            Id = 9,
             Title = "Якобин",
             Type = Species.Pigeon
         },
         new Breed
         {
-            Id = 9,
+            Id = 10,
             Title = "Ангорский кролик",
             Type = Species.Rabbit
         },
         new Breed
         {
-            Id = 10,
+            Id = 11,
             Title = "Голландский вислоухий",
             Type = Species.Rabbit
         },
         new Breed
         {
-            Id = 11,
+            Id = 12,
             Title = "Калифорнийский кролик",
             Type = Species.Rabbit
         },
         new Breed
         {
-            Id = 12,
+            Id = 13,
             Title = "Орловский рысак",
             Type = Species.Horse
         },
         new Breed
         {
-            Id = 13,
+            Id = 14,
             Title = "Арабская чистокровная",
             Type = Species.Horse
         },
         new Breed
         {
-            Id = 14,
+            Id = 15,
             Title = "Фризская",
             Type = Species.Horse
         }
@@ -173,81 +163,81 @@ public class VetClinicDataSeeder
     /// <summary>
     /// Функция, создающая список владельцев
     /// </summary>
-    private List<Owner> GetOwnersList() =>
+    private static List<Owner> GetOwnersList() =>
     [
         new Owner
         {
-            Id = 0,
+            Id = 1,
             FullName = "Иванов Иван Иванович",
             Phone = "+7 (999) 111-22-33",
             Adress = "ул. Ленина, д. 10"
         },
         new Owner
         {
-            Id = 1,
+            Id = 2,
             FullName = "Петрова Анна Сергеевна",
             Phone = "+7 (999) 444-55-66",
             Adress = "ул. Садовая, д. 24"
         },
         new Owner
         {
-            Id = 2,
+            Id = 3,
             FullName = "Сидоров Пётр Петрович",
             Phone = "+7 (999) 777-88-99",
             Adress = "пр. Мира, д. 5"
         },
         new Owner
         {
-            Id = 3,
+            Id = 4,
             FullName = "Кузнецова Ольга Владимировна",
             Phone = "+7 (999) 222-33-44",
             Adress = "ул. Гагарина, д. 12"
         },
         new Owner
         {
-            Id = 4,
+            Id = 5,
             FullName = "Смирнов Дмитрий Александрович",
             Phone = "+7 (999) 555-66-77",
             Adress = "ул. Чехова, д. 8"
         },
         new Owner
         {
-            Id = 5,
+            Id = 6,
             FullName = "Васильева Елена Николаевна",
             Phone = "+7 (999) 888-99-00",
             Adress = "ул. Пушкина, д. 15"
         },
         new Owner
         {
-            Id = 6,
+            Id = 7,
             FullName = "Попов Сергей Игоревич",
             Phone = "+7 (999) 333-44-55",
             Adress = "ул. Новая, д. 3"
         },
         new Owner
         {
-            Id = 7,
+            Id = 8,
             FullName = "Михайлова Татьяна Юрьевна",
             Phone = "+7 (999) 666-77-88",
             Adress = "ул. Полевая, д. 21"
         },
         new Owner
         {
-            Id = 8,
+            Id = 9,
             FullName = "Федоров Андрей Олегович",
             Phone = "+7 (999) 999-00-11",
             Adress = "ул. Лесная, д. 4"
         },
         new Owner
         {
-            Id = 9,
+            Id = 10,
             FullName = "Морозова Наталья Сергеевна",
             Phone = "+7 (999) 123-98-76",
             Adress = "ул. Набережная, д. 30"
         },
         new Owner
         {
-            Id = 10,
+            Id = 11,
             FullName = "Иванов Сергей Викторович",
             Phone = "+7 (999) 477-55-66",
             Adress = "ул. Первомайская, д. 23"
@@ -257,65 +247,65 @@ public class VetClinicDataSeeder
     /// <summary>
     /// Функция, создающая список специализаций
     /// </summary>
-    private List<Specialization> GetSpecializationsList() =>
+    private static List<Specialization> GetSpecializationsList() =>
     [
         new Specialization
         {
-            Id = 0,
+            Id = 1,
             Title = "Терапевт-фелинолог",
             TargetSpecies = Species.Cat
         },
         new Specialization
         {
-            Id = 1,
+            Id = 2,
             Title = "Хирург-онколог кошачьих отделений",
             TargetSpecies = Species.Cat
         },
         new Specialization
         {
-            Id = 2,
+            Id = 3,
             Title = "Кинолог-терапевт",
             TargetSpecies = Species.Dog
         },
         new Specialization
         {
-            Id = 3,
+            Id = 4,
             Title = "Травматолог-ортопед собак крупных пород",
             TargetSpecies = Species.Dog
         },
         new Specialization
         {
-            Id = 4,
+            Id = 5,
             Title = "Ветеринар-орнитолог",
             TargetSpecies = Species.Pigeon
         },
         new Specialization
         {
-            Id = 5,
+            Id = 6,
             Title = "Хирург-авиарлог",
             TargetSpecies = Species.Pigeon
         },
         new Specialization
         {
-            Id = 6,
+            Id = 7,
             Title = "Ветеринар-ратолог",
             TargetSpecies = Species.Rabbit
         },
         new Specialization
         {
-            Id = 7,
+            Id = 8,
             Title = "Стоматолог-родентолог",
             TargetSpecies = Species.Rabbit
         },
         new Specialization
         {
-            Id = 8,
+            Id = 9,
             Title = "Ветеринар-ипполог",
             TargetSpecies = Species.Horse
         },
         new Specialization
         {
-            Id = 9,
+            Id = 10,
             Title = "Ортопед-подолог",
             TargetSpecies = Species.Horse
         }
@@ -328,102 +318,102 @@ public class VetClinicDataSeeder
     [
         new Vet
         {
-            Id = 0,
+            Id = 1,
             FullName = "Др. Алексей Айболит",
             PassportNumber = "4511 111111",
             BirthDate = new DateOnly(1980, 5, 12),
             ExpirienceYears = 20,
-            SpecializationId = 0,
+            SpecializationId = Specializations[0].Id,
             Specialization = Specializations[0]
         },
         new Vet
         {
-            Id = 1,
+            Id = 2,
             FullName = "Др. Степан Котов",
             PassportNumber = "4511 222222",
             BirthDate = new DateOnly(1990, 8, 14),
             ExpirienceYears = 6,
-            SpecializationId = 1,
+            SpecializationId = Specializations[1].Id,
             Specialization = Specializations[1]
         },
         new Vet
         {
-            Id = 2,
+            Id = 3,
             FullName = "Др. Елена Быкова",
             PassportNumber = "4512 333333",
             BirthDate = new DateOnly(1985, 11, 23),
             ExpirienceYears = 12,
-            SpecializationId = 2,
+            SpecializationId = Specializations[2].Id,
             Specialization = Specializations[2]
         },
         new Vet
         {
-            Id = 3,
+            Id = 4,
             FullName = "Др. Михаил Шариков",
             PassportNumber = "4512 444444",
             BirthDate = new DateOnly(1993, 1, 19),
             ExpirienceYears = 4,
-            SpecializationId = 3,
+            SpecializationId = Specializations[3].Id,
             Specialization = Specializations[3]
         },
         new Vet
         {
-            Id = 4,
+            Id = 5,
             FullName = "Др. Анна Смит",
             PassportNumber = "4514 777777",
             BirthDate = new DateOnly(1992, 7, 4),
             ExpirienceYears = 6,
-            SpecializationId = 4,
+            SpecializationId = Specializations[4].Id,
             Specialization = Specializations[4]
         },
         new Vet
         {
-            Id = 5,
+            Id = 6,
             FullName = "Др. Григорий Птицын",
             PassportNumber = "4514 888888",
             BirthDate = new DateOnly(1983, 4, 27),
             ExpirienceYears = 15,
-            SpecializationId = 5,
+            SpecializationId = Specializations[5].Id,
             Specialization = Specializations[5]
         },
         new Vet
         {
-            Id = 6,
+            Id = 7,
             FullName = "Др. Кэррот Роджерс",
             PassportNumber = "4515 999999",
             BirthDate = new DateOnly(1988, 9, 30),
             ExpirienceYears = 10,
-            SpecializationId = 6,
+            SpecializationId = Specializations[6].Id,
             Specialization = Specializations[6]
         },
         new Vet
         {
-            Id = 7,
+            Id = 8,
             FullName = "Др. Ольга Ушастая",
             PassportNumber = "4515 000000",
             BirthDate = new DateOnly(1995, 2, 10),
             ExpirienceYears = 3,
-            SpecializationId = 7,
+            SpecializationId = Specializations[7].Id,
             Specialization = Specializations[7]
         },
         new Vet
         {
-            Id = 8,
+            Id = 9,
             FullName = "Др. Иван Дулиттл",
             PassportNumber = "4513 555555",
             BirthDate = new DateOnly(1978, 3, 15),
             ExpirienceYears = 25,
-            SpecializationId = 8,
+            SpecializationId = Specializations[8].Id,
             Specialization = Specializations[8]
         },
         new Vet
         {
-            Id = 9,
+            Id = 10,
             FullName = "Др. Ксения Конева",
             PassportNumber = "4513 666666",
             BirthDate = new DateOnly(1989, 12, 5),
             ExpirienceYears = 9,
-            SpecializationId = 9,
+            SpecializationId = Specializations[9].Id,
             Specialization = Specializations[9]
         }
     ];
@@ -435,122 +425,122 @@ public class VetClinicDataSeeder
     [
         new Service
         {
-            Id = 0,
+            Id = 1,
             Title = "Первичный осмотр и термометрия кошек",
             Price = 1000m,
-            SpecializationId = 1,
-            Specialization = Specializations[0]
-        },
-        new Service
-        {
-            Id = 1,
-            Title = "Комплексная вакцинация кошачьих",
-            Price = 1500m,
-            SpecializationId = 1,
+            SpecializationId = Specializations[0].Id,
             Specialization = Specializations[0]
         },
         new Service
         {
             Id = 2,
-            Title = "Гигиеническая чистка зубов кошкам",
-            Price = 1800m,
-            SpecializationId = 1,
+            Title = "Комплексная вакцинация кошачьих",
+            Price = 1500m,
+            SpecializationId = Specializations[0].Id,
             Specialization = Specializations[0]
         },
         new Service
         {
             Id = 3,
-            Title = "Клинический осмотр и консультация собак",
-            Price = 1200m,
-            SpecializationId = 3,
-            Specialization = Specializations[2]
+            Title = "Гигиеническая чистка зубов кошкам",
+            Price = 1800m,
+            SpecializationId = Specializations[0].Id,
+            Specialization = Specializations[0]
         },
         new Service
         {
             Id = 4,
-            Title = "Комплексная вакцинация собак (с бешенством)",
-            Price = 1700m,
-            SpecializationId = 3,
+            Title = "Клинический осмотр и консультация собак",
+            Price = 1200m,
+            SpecializationId = Specializations[2].Id,
             Specialization = Specializations[2]
         },
         new Service
         {
             Id = 5,
-            Title = "УЗИ органов брюшной полости собак",
-            Price = 2500m,
-            SpecializationId = 3,
+            Title = "Комплексная вакцинация собак (с бешенством)",
+            Price = 1700m,
+            SpecializationId = Specializations[2].Id,
             Specialization = Specializations[2]
         },
         new Service
         {
             Id = 6,
-            Title = "Осмотр птицы и микроскопия мазка",
-            Price = 900m,
-            SpecializationId = 5,
-            Specialization = Specializations[4]
+            Title = "УЗИ органов брюшной полости собак",
+            Price = 2500m,
+            SpecializationId = Specializations[2].Id,
+            Specialization = Specializations[2]
         },
         new Service
         {
             Id = 7,
-            Title = "Коррекция (подрезка) переросшего клюва",
-            Price = 800m,
-            SpecializationId = 5,
+            Title = "Осмотр птицы и микроскопия мазка",
+            Price = 900m,
+            SpecializationId = Specializations[4].Id,
             Specialization = Specializations[4]
         },
         new Service
         {
             Id = 8,
-            Title = "Лабораторный анализ оперения на паразитов",
-            Price = 1100m,
-            SpecializationId = 5,
+            Title = "Коррекция (подрезка) переросшего клюва",
+            Price = 800m,
+            SpecializationId = Specializations[4].Id,
             Specialization = Specializations[4]
         },
         new Service
         {
             Id = 9,
-            Title = "Прием ратолога и визуальная диагностика",
-            Price = 950m,
-            SpecializationId = 7,
-            Specialization = Specializations[6]
+            Title = "Лабораторный анализ оперения на паразитов",
+            Price = 1100m,
+            SpecializationId = Specializations[4].Id,
+            Specialization = Specializations[4]
         },
         new Service
         {
             Id = 10,
-            Title = "Коррекция и подпилка резцов у грызунов",
-            Price = 1300m,
-            SpecializationId = 7,
+            Title = "Прием ратолога и визуальная диагностика",
+            Price = 950m,
+            SpecializationId = Specializations[6].Id,
             Specialization = Specializations[6]
         },
         new Service
         {
             Id = 11,
-            Title = "Вакцинация кроликов от ВГБК и миксоматоза",
-            Price = 1100m,
-            SpecializationId = 7,
+            Title = "Коррекция и подпилка резцов у грызунов",
+            Price = 1300m,
+            SpecializationId = Specializations[6].Id,
             Specialization = Specializations[6]
         },
         new Service
         {
             Id = 12,
-            Title = "Выездной осмотр и аускультация лошади",
-            Price = 4000m,
-            SpecializationId = 9,
-            Specialization = Specializations[8]
+            Title = "Вакцинация кроликов от ВГБК и миксоматоза",
+            Price = 1100m,
+            SpecializationId = Specializations[6].Id,
+            Specialization = Specializations[6]
         },
         new Service
         {
             Id = 13,
-            Title = "Расчистка и ортопедическая обработка копыт",
-            Price = 5000m,
-            SpecializationId = 9,
+            Title = "Выездной осмотр и аускультация лошади",
+            Price = 4000m,
+            SpecializationId = Specializations[8].Id,
             Specialization = Specializations[8]
         },
         new Service
         {
             Id = 14,
+            Title = "Расчистка и ортопедическая обработка копыт",
+            Price = 5000m,
+            SpecializationId = Specializations[8].Id,
+            Specialization = Specializations[8]
+        },
+        new Service
+        {
+            Id = 15,
             Title = "Рентгенография конечностей лошади",
             Price = 6500m,
-            SpecializationId = 9,
+            SpecializationId = Specializations[8].Id,
             Specialization = Specializations[8]
         }
     ];
@@ -562,7 +552,7 @@ public class VetClinicDataSeeder
     [
         new Pet
         {
-            Id = 0,
+            Id = 1,
             Name = "Барсик",
             Type = Species.Cat,
             BirthDate = new DateOnly(2022, 4, 10),
@@ -574,7 +564,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 1,
+            Id = 2,
             Name = "Мурка",
             Type = Species.Cat,
             BirthDate = new DateOnly(2023, 6, 15),
@@ -586,7 +576,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 2,
+            Id = 3,
             Name = "Симба",
             Type = Species.Cat,
             BirthDate = new DateOnly(2025, 1, 20),
@@ -598,7 +588,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 3,
+            Id = 4,
             Name = "Шарик",
             Type = Species.Dog,
             BirthDate = new DateOnly(2020, 11, 5),
@@ -610,7 +600,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 4,
+            Id = 5,
             Name = "Рекс",
             Type = Species.Dog,
             BirthDate = new DateOnly(2021, 8, 25),
@@ -622,7 +612,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 5,
+            Id = 6,
             Name = "Граф",
             Type = Species.Dog,
             BirthDate = new DateOnly(2024, 3, 14),
@@ -634,7 +624,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 6,
+            Id = 7,
             Name = "Кеша",
             Type = Species.Pigeon,
             BirthDate = new DateOnly(2025, 5, 12),
@@ -646,7 +636,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 7,
+            Id = 8,
             Name = "Ворчун",
             Type = Species.Pigeon,
             BirthDate = new DateOnly(2024, 7, 19),
@@ -658,7 +648,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 8,
+            Id = 9,
             Name = "Пират",
             Type = Species.Pigeon,
             BirthDate = new DateOnly(2026, 2, 1),
@@ -670,7 +660,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 9,
+            Id = 10,
             Name = "Пушок",
             Type = Species.Rabbit,
             BirthDate = new DateOnly(2023, 10, 1),
@@ -682,7 +672,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 10,
+            Id = 11,
             Name = "Снежок",
             Type = Species.Rabbit,
             BirthDate = new DateOnly(2024, 12, 11),
@@ -694,7 +684,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 11,
+            Id = 12,
             Name = "Банни",
             Type = Species.Rabbit,
             BirthDate = new DateOnly(2025, 4, 3),
@@ -706,7 +696,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 12,
+            Id = 13,
             Name = "Буцефал",
             Type = Species.Horse,
             BirthDate = new DateOnly(2019, 5, 20),
@@ -718,7 +708,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 13,
+            Id = 14,
             Name = "Искра",
             Type = Species.Horse,
             BirthDate = new DateOnly(2021, 9, 15),
@@ -730,7 +720,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 14,
+            Id = 15,
             Name = "Тайфон",
             Type = Species.Horse,
             BirthDate = new DateOnly(2020, 6, 30),
@@ -742,7 +732,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 15,
+            Id = 16,
             Name = "Мурзик",
             Type = Species.Cat,
             BirthDate = new DateOnly(2020, 4, 10),
@@ -754,7 +744,7 @@ public class VetClinicDataSeeder
         },
         new Pet
         {
-            Id = 16,
+            Id = 17,
             Name = "Боцик",
             Type = Species.Horse,
             BirthDate = new DateOnly(2023, 9, 15),
@@ -773,7 +763,7 @@ public class VetClinicDataSeeder
     [
         new Appointment
         {
-            Id = 0,
+            Id = 1,
             DateTime = new DateTime(2026, 9, 1, 10, 0, 0),
             Diagnosis = "Здоров",
             RoomNumber = 101,
@@ -787,7 +777,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 1,
+            Id = 2,
             DateTime = new DateTime(2026, 2, 2, 11, 30, 0),
             Diagnosis = "Здорова",
             RoomNumber = 103,
@@ -801,7 +791,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 2,
+            Id = 3,
             DateTime = new DateTime(2026, 9, 8, 10, 30, 0),
             Diagnosis = "Зубной камень удален",
             RoomNumber = 101,
@@ -815,7 +805,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 3,
+            Id = 4,
             DateTime = new DateTime(2026, 9, 12, 15, 45, 0),
             Diagnosis = "Витамины прописаны",
             RoomNumber = 103,
@@ -829,7 +819,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 4,
+            Id = 5,
             DateTime = new DateTime(2026, 6, 3, 14, 0, 0),
             Diagnosis = "Здоров",
             RoomNumber = 102,
@@ -843,7 +833,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 5,
+            Id = 6,
             DateTime = new DateTime(2026, 7, 4, 15, 0, 0),
             Diagnosis = "Назначена диета",
             RoomNumber = 106,
@@ -857,7 +847,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 6,
+            Id = 7,
             DateTime = new DateTime(2026, 9, 9, 12, 0, 0),
             Diagnosis = "Плановое УЗИ",
             RoomNumber = 102,
@@ -871,7 +861,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 7,
+            Id = 8,
             DateTime = new DateTime(2026, 9, 13, 16, 0, 0),
             Diagnosis = "Вакцинация выполнена",
             RoomNumber = 102,
@@ -885,7 +875,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 8,
+            Id = 9,
             DateTime = new DateTime(2026, 6, 6, 16, 30, 0),
             Diagnosis = "Здоров",
             RoomNumber = 105,
@@ -899,7 +889,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 9,
+            Id = 10,
             DateTime = new DateTime(2026, 7, 14, 10, 0, 0),
             Diagnosis = "Клюв в норме",
             RoomNumber = 107,
@@ -913,7 +903,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 10,
+            Id = 11,
             DateTime = new DateTime(2026, 8, 16, 11, 0, 0),
             Diagnosis = "Осмотр крыла",
             RoomNumber = 105,
@@ -927,7 +917,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 11,
+            Id = 12,
             DateTime = new DateTime(2026, 10, 7, 13, 0, 0),
             Diagnosis = "Отрастание резцов",
             RoomNumber = 104,
@@ -941,7 +931,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 12,
+            Id = 13,
             DateTime = new DateTime(2026, 10, 15, 14, 0, 0),
             Diagnosis = "Зубы в порядке",
             RoomNumber = 108,
@@ -955,7 +945,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 13,
+            Id = 14,
             DateTime = new DateTime(2026, 10, 17, 9, 30, 0),
             Diagnosis = "Здоров",
             RoomNumber = 104,
@@ -969,7 +959,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 14,
+            Id = 15,
             DateTime = new DateTime(2026, 9, 5, 9, 0, 0),
             Diagnosis = "Профилактика копыт",
             RoomNumber = 109,
@@ -983,7 +973,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 15,
+            Id = 16,
             DateTime = new DateTime(2026, 9, 12, 9, 0, 0),
             Diagnosis = "Профилактика копыт",
             RoomNumber = 109,
@@ -997,7 +987,7 @@ public class VetClinicDataSeeder
         },
         new Appointment
         {
-            Id = 16,
+            Id = 17,
             DateTime = new DateTime(2026, 8, 9, 11, 30, 0),
             Diagnosis = "Здоров",
             RoomNumber = 103,

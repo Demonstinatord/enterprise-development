@@ -21,7 +21,7 @@ public class Pet
     /// <summary>
     /// Дата рождения
     /// </summary>
-    public required DateOnly BirthDate { get; set; }
+    public DateOnly BirthDate { get; set; }
     /// <summary>
     /// Идентификатор породы
     /// </summary>
@@ -29,11 +29,11 @@ public class Pet
     /// <summary>
     /// Ссылка на породу животного 
     /// </summary>
-    public required Breed Breed { get; set; }
+    public Breed? Breed { get; set; }
     /// <summary>
     /// Вес животного 
     /// </summary>
-    public required decimal Weight { get; set; }
+    public decimal? Weight { get; set; }
     /// <summary>
     /// Идентификатор владельца 
     /// </summary>

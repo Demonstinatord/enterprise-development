@@ -9,6 +9,6 @@ namespace VetClinic.Application.Contracts.Appointments;
 /// <param name="ServiceTitle">Название оказываемой медицинской услуги</param>
 /// <param name="RoomNumber">Номер смотрового кабинета</param>
 /// <param name="VisitType">Признак первичного или повторного обращения(Да/Нет)</param>
-public record AppointmentDto(int Id, DateTime DateTime, string? Diagnosis, string PetName, string VetName, string ServiceTitle, decimal Price, int RoomNumber, string VisitType);
+public record AppointmentDto(int Id, DateTime DateTime, string? Diagnosis, string PetName, string VetName, string ServiceTitle, decimal Price, int RoomNumber, string? VisitType);
 
 

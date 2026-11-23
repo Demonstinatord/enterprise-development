@@ -1,7 +1,7 @@
 using VetClinic.Domain.Entities;
 using VetClinic.Domain.Interfaces;
+using VetClinic.Domain.Seeder;
 using VetClinic.Domain.Shared.Enums;
-using VetClinic.InMemory.Seeder;
 
 namespace VetClinic.InMemory.Repositories;
 /// <summary>

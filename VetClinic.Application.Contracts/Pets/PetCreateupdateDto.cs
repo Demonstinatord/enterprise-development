@@ -11,5 +11,5 @@ namespace VetClinic.Application.Contracts.Pets;
 /// <param name="Weight">Вес животного</param>
 /// <param name="BreedId">Id породы</param>
 /// <param name="OwnerId">Id владельца</param>
-public record PetCreateUpdateDto(string Name, Species Type, DateOnly BirthDate, decimal Weight, int BreedId, int OwnerId);
+public record PetCreateUpdateDto(string Name, Species Type, DateOnly BirthDate, decimal? Weight, int BreedId, int OwnerId);
 

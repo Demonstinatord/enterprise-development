@@ -105,19 +105,22 @@ public class AnalyticController(IAnalyticService service, ILogger<AnalyticContro
     }
 
     /// <summary>
-    /// Получить приемы за текущий месяц, проходящие в выбранном кабинете
+    /// Получить приемы за интересующий месяц, проходящие в выбранном кабинете
     /// </summary>
     /// <param name="roomNumber">Номер интересуемого кабинета</param>
+    /// <param name="month">Интересуемый месяц</param>
+    /// <param name="year">Интересуемый год</param>
+    /// 
     /// <return>Список записей на приём </return>
     [HttpGet("appointments/current-month/by-room/{roomNumber:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> GetCurrentMonthAppointments(int roomNumber)
+    public async Task<IActionResult> GetCurrentMonthAppointments(int roomNumber, int month, int year)
     {
         try
         {
             logger.LogInformation("API: Запрос расписания на текущий месяц для кабинета {Room}", roomNumber);
-            var result = await service.GetAllAppointmentsForCurrentMonthByRoom(roomNumber);
+            var result = await service.GetAllAppointmentsForCurrentMonthByRoom(roomNumber, month, year);
             return Ok(result);
         }
         catch (Exception ex)

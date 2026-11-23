@@ -1,8 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using VetClinic.Domain.Entities;
 using VetClinic.Domain.Interfaces;
+using VetClinic.Domain.Seeder;
 using VetClinic.InMemory.Repositories;
-using VetClinic.InMemory.Seeder;
 
 namespace VetClinic.InMemory;
 /// <summary>

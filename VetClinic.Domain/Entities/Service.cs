@@ -15,7 +15,7 @@ public class Service
     /// <summary>
     /// Цена услуги 
     /// </summary>
-    public decimal Price { get; set; }
+    public required decimal Price { get; set; }
     /// <summary>
     /// Идентификатор специализации
     /// </summary>

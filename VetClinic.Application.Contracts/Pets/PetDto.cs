@@ -8,4 +8,4 @@ namespace VetClinic.Application.Contracts.Pets;
 /// <param name="BreedTitle">Название породы</param>
 /// <param name="OwnerName">ФИО владельца</param>
 /// <param name="Weight">Вес животного</param>
-public record PetDto(int Id, string Name, string SpeciesTitle, string BreedTitle, string OwnerName, decimal Weight);
+public record PetDto(int Id, string Name, string SpeciesTitle, string BreedTitle, string OwnerName, decimal? Weight);

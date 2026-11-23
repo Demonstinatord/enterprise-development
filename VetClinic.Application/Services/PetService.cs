@@ -24,7 +24,7 @@ public class PetAppService(
         logger.LogInformation("Запрос: Получение всех питомцев");
         var list = await petRepository.GetAll();
         logger.LogInformation("Из репозитория успешно извлечено {Count} питомцев", list.Count);
-        return list.Select(x => new PetDto(x.Id, x.Name, x.Type.ToString(), x.Breed.Title, x.Owner.FullName, x.Weight)).ToList();
+        return list.Select(x => new PetDto(x.Id, x.Name, x.Type.ToString(), x.Breed?.Title ?? "-", x.Owner.FullName, x.Weight ?? 0)).ToList();
     }
 
     ///<inheritdoc/>
@@ -37,7 +37,7 @@ public class PetAppService(
             logger.LogWarning("Питомец с Id {Id} отсутствует в хранилище данных", id);
             return null;
         }
-        return new PetDto(x.Id, x.Name, x.Type.ToString(), x.Breed.Title, x.Owner.FullName, x.Weight);
+        return new PetDto(x.Id, x.Name, x.Type.ToString(), x.Breed?.Title ?? "-", x.Owner.FullName, x.Weight ?? 0);
     }
 
     ///<inheritdoc/>
@@ -61,7 +61,7 @@ public class PetAppService(
 
         await petRepository.Create(entity);
         logger.LogInformation("Питомец '{Name}' успешно сохранен с присвоенным Id {Id}", entity.Name, entity.Id);
-        return new PetDto(entity.Id, entity.Name, entity.Type.ToString(), breed.Title, owner.FullName, entity.Weight);
+        return new PetDto(entity.Id, entity.Name, entity.Type.ToString(), breed.Title, owner.FullName, entity.Weight ?? 0);
     }
     ///<inheritdoc/>
     public async Task<PetDto> Update(PetCreateUpdateDto dto, int id)
@@ -84,7 +84,7 @@ public class PetAppService(
         };
         await petRepository.Update(entity);
         logger.LogInformation("Данные питомца с Id {Id} успешно изменены", id);
-        return new PetDto(entity.Id, entity.Name, entity.Type.ToString(), breed.Title, owner.FullName, entity.Weight);
+        return new PetDto(entity.Id, entity.Name, entity.Type.ToString(), breed.Title, owner.FullName, entity.Weight ?? 0);
     }
     ///<inheritdoc/>
     public async Task<bool> Delete(int id)

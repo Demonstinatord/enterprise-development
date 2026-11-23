@@ -11,4 +11,4 @@ namespace VetClinic.Application.Contracts.Appointments;
 /// <param name="ServiceId">Идентификатор оказываемой медицинской услуги</param>
 /// <param name="RoomNumber">Номер смотрового кабинета</param>
 /// <param name="RepeatVisitIndicator">Признак первичного или повторного обращения</param>
-public record AppointmentCreateUpdateDto(DateTime DateTime, string? Diagnosis, int PetId, int VetId, int ServiceId, int RoomNumber, RepeatVisitIndicator RepeatVisitIndicator);
+public record AppointmentCreateUpdateDto(DateTime DateTime, string? Diagnosis, int PetId, int VetId, int ServiceId, int RoomNumber, RepeatVisitIndicator? RepeatVisitIndicator);

@@ -1,5 +1,5 @@
 using VetClinic.Domain.Entities;
-using VetClinic.InMemory.Seeder;
+using VetClinic.Domain.Seeder;
 namespace VetClinic.Tests.Fixtures;
 
 /// <summary>

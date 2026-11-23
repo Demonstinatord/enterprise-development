@@ -50,7 +50,7 @@ public class ClinicDomainTests(VetClinicFixture fixture, ITestOutputHelper outpu
         {
             output.WriteLine($"  Питомец ID: {p.Id} | Кличка: {p.Name} | Вид: {p.Type} | Вес: {p.Weight} кг");
             output.WriteLine($"  Дата рождения: {p.BirthDate}");
-            output.WriteLine($"  Порода: ID {p.BreedId} - {p.Breed.Title}");
+            output.WriteLine($"  Порода: ID {p.BreedId} - {p.Breed?.Title ?? "-"}");
             output.WriteLine("");
         }
 
@@ -84,7 +84,7 @@ public class ClinicDomainTests(VetClinicFixture fixture, ITestOutputHelper outpu
         {
             output.WriteLine($"  Питомец ID: {p.Id} | Кличка: {p.Name} | Вид: {p.Type} | Вес: {p.Weight} кг");
             output.WriteLine($"  Дата рождения: {p.BirthDate}");
-            output.WriteLine($"  Порода: ID {p.BreedId} - {p.Breed.Title}");
+            output.WriteLine($"  Порода: ID {p.BreedId} - {p.Breed?.Title ?? "-"} ");
             output.WriteLine("");
         }
 

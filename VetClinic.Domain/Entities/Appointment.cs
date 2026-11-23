@@ -13,7 +13,7 @@ public class Appointment
     /// <summary>
     /// Время приёма
     /// </summary>
-    public DateTime DateTime { get; set; }
+    public required DateTime DateTime { get; set; }
     /// <summary>
     /// Диагноз 
     /// </summary>
@@ -49,5 +49,5 @@ public class Appointment
     /// <summary>
     /// Индикатор повторного приёма
     /// </summary>
-    public required RepeatVisitIndicator RepeatVisitIndicator { get; set; }
+    public RepeatVisitIndicator? RepeatVisitIndicator { get; set; }
 }

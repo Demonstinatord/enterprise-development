@@ -1,48 +1,47 @@
+using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using System.Text.Json.Serialization;
 using VetClinic.Application;
-using VetClinic.InMemory;
-// Инициализация билдера
+using VetClinic.EfCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Настройка логирования
-builder.Services.AddLogging(logging =>
-{
-    logging.AddConsole();
-    logging.AddDebug();
-});
+builder.AddServiceDefaults();
 
-// Регистрация компонентов системы
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
+
 builder.Services.AddOpenApi();
 
-// Автономное подключение инкапсулированных слоев через их собственные DI-модули
-builder.Services.AddDataLayer();
+// Подключаем MySQL + EF Core через клиентскую интеграцию Aspire
+builder.AddEfCoreDataLayer("vetclinicdb");
 builder.Services.AddApplicationLayer();
 
-// Сборка приложения
 var app = builder.Build();
 
-// Логируем успешный старт инфраструктурного контура сервера
-var logger = app.Services.GetRequiredService<Microsoft.Extensions.Logging.ILogger<Program>>();
-logger.LogInformation("Бэкенд-сервер VetClinic успешно запущен. Сборка слоев завершена.");
+// Автоматически создаем таблицы и заливаем данные из HasData в контейнер MySQL
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<VetClinicDbContext>();
+    await dbContext.Database.MigrateAsync();
+}
 
-// Контейнер обработки HTTP решений
+app.MapDefaultEndpoints();
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference(options =>
     {
-        options.WithTitle("VetClinic Interactive API (Scalar)")
-               .WithTheme(ScalarTheme.DeepSpace)
-               .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
+        options.WithTitle("VetClinic API (MySQL + Aspire)")
+               .WithTheme(ScalarTheme.DeepSpace);
     });
 }
 
+app.UseAuthorization();
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();

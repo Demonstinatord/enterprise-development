@@ -29,7 +29,7 @@ public class AppointmentAppService(
         logger.LogInformation("Из репозитория извлечено {Count} приемов. Начинается маппинг в DTO.", list.Count);
         return list.Select(x => new AppointmentDto(
             x.Id, x.DateTime, x.Diagnosis, x.Pet.Name, x.Vet.FullName,
-            x.Service.Title, x.Service.Price, x.RoomNumber, x.RepeatVisitIndicator.ToString())).ToList();
+            x.Service.Title, x.Service.Price, x.RoomNumber, x.RepeatVisitIndicator?.ToString() ?? "Not")).ToList();
     }
 
     ///<inheritdoc/>
@@ -44,7 +44,7 @@ public class AppointmentAppService(
         }
         return new AppointmentDto(
             x.Id, x.DateTime, x.Diagnosis, x.Pet.Name, x.Vet.FullName,
-            x.Service.Title, x.Service.Price, x.RoomNumber, x.RepeatVisitIndicator.ToString());
+            x.Service.Title, x.Service.Price, x.RoomNumber, x.RepeatVisitIndicator?.ToString() ?? "Not");
     }
 
     ///<inheritdoc/>
@@ -74,7 +74,7 @@ public class AppointmentAppService(
         logger.LogInformation("Запись приема успешно создана в кабинете №{Room} с Id {Id}", entity.RoomNumber, entity.Id);
         return new AppointmentDto(
             entity.Id, entity.DateTime, entity.Diagnosis, pet.Name, vet.FullName,
-            service.Title, service.Price, entity.RoomNumber, entity.RepeatVisitIndicator.ToString());
+            service.Title, service.Price, entity.RoomNumber, entity.RepeatVisitIndicator?.ToString() ?? "Not");
     }
 
     ///<inheritdoc/>
@@ -105,7 +105,7 @@ public class AppointmentAppService(
         logger.LogInformation("Запись приема с Id {Id} успешно обновлена в базе данных.", id);
         return new AppointmentDto(
             entity.Id, entity.DateTime, entity.Diagnosis, pet.Name, vet.FullName,
-            service.Title, service.Price, entity.RoomNumber, entity.RepeatVisitIndicator.ToString());
+            service.Title, service.Price, entity.RoomNumber, entity.RepeatVisitIndicator?.ToString() ?? "Not");
     }
 
     ///<inheritdoc/>
@@ -132,6 +132,6 @@ public class AppointmentAppService(
         logger.LogInformation("Сбор истории завершен: для питомца с Id {PetId} найдено {Count} записей.", petId, list.Count);
         return list.Select(x => new AppointmentDto(
             x.Id, x.DateTime, x.Diagnosis, x.Pet.Name, x.Vet.FullName,
-            x.Service.Title, x.Service.Price, x.RoomNumber, x.RepeatVisitIndicator.ToString())).ToList();
+            x.Service.Title, x.Service.Price, x.RoomNumber, x.RepeatVisitIndicator?.ToString() ?? "Not")).ToList();
     }
 }
