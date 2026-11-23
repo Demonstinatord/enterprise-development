@@ -76,7 +76,7 @@ public abstract class CrudControllerBase<TDto, TCreateUpdateDto, TKey>(
     /// Создает новый элемент на основе переданных в теле запроса данных
     /// </summary>
     /// <param name="dto">Модель данных для создания сущности</param>
-    /// <returns>Созданный элемент со статусом 201 Created или ошибку валидации (400/404)/returns>
+    /// <returns>Созданный элемент со статусом 201 Created или ошибку валидации (400/404)</returns>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
