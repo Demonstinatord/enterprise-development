@@ -160,7 +160,7 @@ public abstract class CrudControllerBase<TDto, TCreateUpdateDto, TKey>(
         try
         {
             logger.LogInformation("Удаление элемента типа {DtoType} с Id {Id}", typeof(TDto).Name, id);
-            var existing = service.Get(id);
+            var existing = await service.Get(id);
             if (existing is null)
             {
                 logger.LogWarning("Элемент типа {DtoType} с Id {Id} не найден", typeof(TDto).Name, id);

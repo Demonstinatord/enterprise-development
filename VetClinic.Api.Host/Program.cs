@@ -3,7 +3,7 @@ using Scalar.AspNetCore;
 using System.Text.Json.Serialization;
 using VetClinic.Application;
 using VetClinic.EfCore;
-
+using VetClinic.ServiceDefaults;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();

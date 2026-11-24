@@ -6,7 +6,7 @@ namespace VetClinic.Tests.Fixtures;
 /// <summary>
 /// Фикстура для однократного поднятия оркестратора Aspire и контейнера MySQL на время выполнения интеграционных тестов
 /// </summary>
-public class VetClinicAspireFixtures : IAsyncLifetime
+public class VetClinicAspireFixture : IAsyncLifetime
 {
     private DistributedApplication? _app;
 
@@ -28,7 +28,7 @@ public class VetClinicAspireFixtures : IAsyncLifetime
         HttpClient = _app.CreateHttpClient("vetclinic-api");
     }
 
-    public async Task DisposeAsync()
+    public async ValueTask DisposeAsync()
     {
         HttpClient?.Dispose();
         if (_app is not null)

@@ -75,18 +75,18 @@ public class AnalyticService(
     }
 
     ///<inheritdoc/>
-    public async Task<List<AppointmentDto>> GetAllAppointmentsForCurrentMonthByRoom(int roomNumber, int Year, int Month)
+    public async Task<List<AppointmentDto>> GetAllAppointmentsForCurrentMonthByRoom(int roomNumber, int month, int year)
     {
-        logger.LogInformation("Аналитика: Фильтрация приемов за текущий месяц ({Month}/{Year}) для кабинета №{Room}.", Month, Year, roomNumber);
+        logger.LogInformation("Аналитика: Фильтрация приемов за текущий месяц ({Month}/{Year}) для кабинета №{Room}.", year, month, roomNumber);
         var appointments = await appointmentRepository.GetAll();
 
         var result = appointments
             .Where(a => a.RoomNumber == roomNumber &&
-                        a.DateTime.Year == Year &&
-                        a.DateTime.Month == Month)
+                        a.DateTime.Year == year &&
+                        a.DateTime.Month == month)
             .Select(x => new AppointmentDto(
                 x.Id, x.DateTime, x.Diagnosis, x.Pet.Name, x.Vet.FullName,
-                x.Service.Title, x.Service.Price, x.RoomNumber, x.RepeatVisitIndicator?.ToString() ?? "No"))
+                x.Service.Title, x.Service.Price, x.RoomNumber, x.RepeatVisitIndicator?.ToString() ?? "Not"))
             .ToList();
 
         logger.LogInformation("В кабинете №{Room} на текущий месяц запланировано/проведено {Count} приемов.", roomNumber, result.Count);
