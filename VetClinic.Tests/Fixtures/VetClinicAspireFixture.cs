@@ -1,4 +1,5 @@
 ﻿using Aspire.Hosting;
+using Aspire.Hosting.ApplicationModel;
 using Aspire.Hosting.Testing;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,20 +19,28 @@ public class VetClinicAspireFixture : IAsyncLifetime
 
     public async ValueTask InitializeAsync()
     {
-        var appHost = await DistributedApplicationTestingBuilder.CreateAsync<Projects.VetClinic_AppHost>();
+        var appHost = await DistributedApplicationTestingBuilder
+            .CreateAsync<Projects.VetClinic_AppHost>();
+
         _app = await appHost.BuildAsync();
-
-        appHost.Services.ConfigureHttpClientDefaults(clientBuilder =>
-        {
-            clientBuilder.ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
-            {
-                ServerCertificateCustomValidationCallback =
-                    HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
-            });
-        });
-
         await _app.StartAsync();
-        HttpClient = _app.CreateHttpClient("vetclinic-api");
+
+        var notificationService = _app.Services.GetRequiredService<ResourceNotificationService>();
+        await notificationService.WaitForResourceHealthyAsync("vetclinic-api");
+
+        using var defaultClient = _app.CreateHttpClient("vetclinic-api");
+        var baseAddress = defaultClient.BaseAddress;
+
+        var handler = new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback =
+                HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+        };
+
+        HttpClient = new HttpClient(handler)
+        {
+            BaseAddress = baseAddress
+        };
     }
 
     public async ValueTask DisposeAsync()
