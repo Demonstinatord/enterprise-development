@@ -25,6 +25,7 @@ public abstract class CrudControllerBase<TDto, TCreateUpdateDto, TKey>(
     /// Возвращает полный список всех доступных элементов
     /// </summary>
     /// <returns>Список DTO с HTTP-статусом 200 OK</returns>
+    [EndpointSummary("Возвращает полный список всех доступных элементов")]
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -48,6 +49,7 @@ public abstract class CrudControllerBase<TDto, TCreateUpdateDto, TKey>(
     /// </summary>
     /// <param name="id">Id запрашиваемого элемента</param>
     /// <returns>Найденный элемент (200 OK) или статус 404 Not Found</returns>
+    [EndpointSummary("Возвращает конкретный элемент по его уникальному идентификатору")]
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -77,6 +79,7 @@ public abstract class CrudControllerBase<TDto, TCreateUpdateDto, TKey>(
     /// </summary>
     /// <param name="dto">Модель данных для создания сущности</param>
     /// <returns>Созданный элемент со статусом 201 Created или ошибку валидации (400/404)</returns>
+    [EndpointSummary("Создает новый элемент на основе переданных в теле запроса данных")]
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -114,6 +117,7 @@ public abstract class CrudControllerBase<TDto, TCreateUpdateDto, TKey>(
     /// <param name="dto">Модель с обновленными полями сущности</param>
     /// <param name="id">Уникальный идентификатор обновляемого элемента</param>
     /// <returns>Обновленный элемент со статусом 200 OK или статусы (400/404)</returns>
+    [EndpointSummary("Полностью обновляет данные существующего элемента по его идентификатору")]
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -150,17 +154,19 @@ public abstract class CrudControllerBase<TDto, TCreateUpdateDto, TKey>(
     /// </summary>
     /// <param name="id">Уникальный идентификатор удаляемого элемента</param>
     /// <returns>Статус 204 No Content при успешном завершении или 409 Conflict при нарушении</returns>
+    [EndpointSummary("Идемпотентно удаляет элемент по его уникальному идентификатору")]
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
     public async Task<IActionResult> DeleteAsync(TKey id)
     {
         try
         {
             logger.LogInformation("Удаление элемента типа {DtoType} с Id {Id}", typeof(TDto).Name, id);
-            var existing = service.Get(id);
+            var existing = await service.Get(id);
             if (existing is null)
             {
                 logger.LogWarning("Элемент типа {DtoType} с Id {Id} не найден", typeof(TDto).Name, id);

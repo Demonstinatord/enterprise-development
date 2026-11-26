@@ -38,7 +38,7 @@ public class AnalyticService(
             .Select(a => a.Pet)
             .DistinctBy(p => p.Id)
             .OrderBy(p => p.Name)
-            .Select(x => new PetDto(x.Id, x.Name, x.Type.ToString(), x.Breed.Title, x.Owner.FullName, x.Weight))
+            .Select(x => new PetDto(x.Id, x.Name, x.Type.ToString(), x.Breed?.Title ?? "-", x.Owner.FullName, x.Weight))
             .ToList();
 
         logger.LogInformation("Сформирован уникальный список из {Count} питомцев для врача с Id {VetId}, отсортированный по кличке.", result.Count, vetId);
@@ -75,16 +75,15 @@ public class AnalyticService(
     }
 
     ///<inheritdoc/>
-    public async Task<List<AppointmentDto>> GetAllAppointmentsForCurrentMonthByRoom(int roomNumber)
+    public async Task<List<AppointmentDto>> GetAllAppointmentsForCurrentMonthByRoom(int roomNumber, int month, int year)
     {
-        var now = DateTime.Now;
-        logger.LogInformation("Аналитика: Фильтрация приемов за текущий месяц ({Month}/{Year}) для кабинета №{Room}.", now.Month, now.Year, roomNumber);
+        logger.LogInformation("Аналитика: Фильтрация приемов за текущий месяц ({Month}/{Year}) для кабинета №{Room}.", year, month, roomNumber);
         var appointments = await appointmentRepository.GetAll();
 
         var result = appointments
             .Where(a => a.RoomNumber == roomNumber &&
-                        a.DateTime.Year == now.Year &&
-                        a.DateTime.Month == now.Month)
+                        a.DateTime.Year == year &&
+                        a.DateTime.Month == month)
             .Select(x => new AppointmentDto(
                 x.Id, x.DateTime, x.Diagnosis, x.Pet.Name, x.Vet.FullName,
                 x.Service.Title, x.Service.Price, x.RoomNumber, x.RepeatVisitIndicator.ToString()))

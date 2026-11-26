@@ -42,5 +42,5 @@ public interface IAnalyticService
     /// </summary>
     /// <param name="roomNumber">Интересуемый кабинет</param>
     /// <returns>Список записей на приём</returns>
-    public Task<List<AppointmentDto>> GetAllAppointmentsForCurrentMonthByRoom(int roomNumber);
+    public Task<List<AppointmentDto>> GetAllAppointmentsForCurrentMonthByRoom(int roomNumber, int Month, int Year);
 }
