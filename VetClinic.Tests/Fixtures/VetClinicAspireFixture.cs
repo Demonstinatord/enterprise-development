@@ -1,5 +1,6 @@
 ﻿using Aspire.Hosting;
 using Aspire.Hosting.Testing;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace VetClinic.Tests.Fixtures;
 
@@ -19,6 +20,16 @@ public class VetClinicAspireFixture : IAsyncLifetime
     {
         var appHost = await DistributedApplicationTestingBuilder.CreateAsync<Projects.VetClinic_AppHost>();
         _app = await appHost.BuildAsync();
+
+        appHost.Services.ConfigureHttpClientDefaults(clientBuilder =>
+        {
+            clientBuilder.ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback =
+                    HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+            });
+        });
+
         await _app.StartAsync();
         HttpClient = _app.CreateHttpClient("vetclinic-api");
     }
