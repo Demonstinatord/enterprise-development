@@ -14,7 +14,7 @@
 	
     <ProjectReference Include="..\VetClinic.Application\VetClinic.Application.csproj" />
     <ProjectReference Include="..\VetClinic.Application.Contracts\VetClinic.Application.Contracts.csproj" />
-    <ProjectReference Include="..\VetClinic.EFCore\VetClinic.EfCore.csproj" />
+    <ProjectReference Include="..\VetClinic.EfCore\VetClinic.EfCore.csproj" />
     <ProjectReference Include="..\VetClinic.InMemory\VetClinic.InMemory.csproj" />
     <ProjectReference Include="..\VetClinic.ServiceDefaults\VetClinic.ServiceDefaults.csproj" />
   </ItemGroup>
