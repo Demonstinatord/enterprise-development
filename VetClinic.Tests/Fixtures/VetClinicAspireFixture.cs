@@ -17,14 +17,9 @@ public class VetClinicAspireFixture : IAsyncLifetime
 
     public async ValueTask InitializeAsync()
     {
-        // Создаем тестовый билдер на базе вашего AppHost
-        var appHost = await DistributedApplicationTestingBuilder
-            .CreateAsync<Projects.VetClinic_AppHost>();
-
+        var appHost = await DistributedApplicationTestingBuilder.CreateAsync<Projects.VetClinic_AppHost>();
         _app = await appHost.BuildAsync();
         await _app.StartAsync();
-
-        // Получаем HttpClient, привязанный к имени ресурса API из AppHost.cs ("vetclinic-api")
         HttpClient = _app.CreateHttpClient("vetclinic-api");
     }
 

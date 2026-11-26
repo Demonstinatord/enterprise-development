@@ -25,7 +25,7 @@ public class VetClinicIntegrationTests(VetClinicAspireFixture fixture) : IClassF
     /// Проверяет, что миграция успешно применилась и начальные данные из сидера загружаются из MySQL.
     /// </summary>
     [Fact]
-    public async Task GetAllPets_ReturnsSeededData_FromMySql()
+    public async Task GetAllPetsFromMySql()
     {
         var response = await fixture.HttpClient.GetAsync("/api/Pet", TestContext.Current.CancellationToken);
 
@@ -37,12 +37,12 @@ public class VetClinicIntegrationTests(VetClinicAspireFixture fixture) : IClassF
     }
 
     /// <summary>
-    /// Проверяет полный жизненный цикл сущности (POST -> GET -> PUT -> DELETE -> 404) в реальной БД.
+    /// Проверяет полный жизненный цикл сущности (POST -> GET -> PUT -> DELETE -> 404) в реальной БД
     /// </summary>
     [Fact]
-    public async Task PetCrudLifecycle_PersistsAndDeletesInMySql()
+    public async Task PetCrudLifecycleInMySql()
     {
-        // 1. CREATE (POST)
+        // CREATE (POST)
         var createDto = new PetCreateUpdateDto(
             Name: "Интеграционный Кот",
             Type: Species.Cat,
@@ -60,11 +60,9 @@ public class VetClinicIntegrationTests(VetClinicAspireFixture fixture) : IClassF
         Assert.True(created.Id > 0);
         Assert.Equal("Интеграционный Кот", created.Name);
 
-        // 2. READ (GET by Id)
         var getResponse = await fixture.HttpClient.GetAsync($"/api/Pet/{created.Id}", TestContext.Current.CancellationToken);
         Assert.Equal(HttpStatusCode.OK, getResponse.StatusCode);
 
-        // 3. UPDATE (PUT)
         var updateDto = createDto with { Name = "Обновленный Кот", Weight = 6 };
         var putResponse = await fixture.HttpClient.PutAsJsonAsync($"/api/Pet/{created.Id}", updateDto, _jsonOptions, cancellationToken: TestContext.Current.CancellationToken);
         Assert.Equal(HttpStatusCode.OK, putResponse.StatusCode);
@@ -73,11 +71,9 @@ public class VetClinicIntegrationTests(VetClinicAspireFixture fixture) : IClassF
         Assert.NotNull(updated);
         Assert.Equal("Обновленный Кот", updated.Name);
 
-        // 4. DELETE
         var deleteResponse = await fixture.HttpClient.DeleteAsync($"/api/Pet/{created.Id}", TestContext.Current.CancellationToken);
         Assert.Equal(HttpStatusCode.NoContent, deleteResponse.StatusCode);
 
-        // 5. VERIFY 404
         var checkResponse = await fixture.HttpClient.GetAsync($"/api/Pet/{created.Id}", TestContext.Current.CancellationToken);
         Assert.Equal(HttpStatusCode.NotFound, checkResponse.StatusCode);
     }
@@ -103,7 +99,7 @@ public class VetClinicIntegrationTests(VetClinicAspireFixture fixture) : IClassF
     }
 
     /// <summary>
-    /// Проверяет выполнение всех 5 аналитических запросов поверх реальных таблиц MySQL.
+    /// Проверяет выполнение всех 5 аналитических запросов из первой лабы
     /// </summary>
     [Fact]
     public async Task AnalyticsQueries_ReturnExpectedResults_FromMySql()
@@ -111,31 +107,26 @@ public class VetClinicIntegrationTests(VetClinicAspireFixture fixture) : IClassF
         const string baseRoute = "/api/Analytic";
         var ct = TestContext.Current.CancellationToken;
 
-        // 1. Врачи по виду животного
         var vetsResp = await fixture.HttpClient.GetAsync($"{baseRoute}/vets/by-species/Cat", ct);
         Assert.Equal(HttpStatusCode.OK, vetsResp.StatusCode);
         var vets = await vetsResp.Content.ReadFromJsonAsync<List<VetDto>>(_jsonOptions, cancellationToken: ct);
         Assert.NotNull(vets);
         Assert.NotEmpty(vets);
 
-        // 2. Питомцы, записанные к конкретному врачу
         var petsByVetResp = await fixture.HttpClient.GetAsync($"{baseRoute}/pets/by-vet/1", ct);
         Assert.Equal(HttpStatusCode.OK, petsByVetResp.StatusCode);
 
-        // 3. Количество повторных приемов по породе
         var repeatResp = await fixture.HttpClient.GetAsync($"{baseRoute}/appointments/repeat-count/by-breed/1", ct);
         Assert.Equal(HttpStatusCode.OK, repeatResp.StatusCode);
         var repeatCount = await repeatResp.Content.ReadFromJsonAsync<int>(_jsonOptions, cancellationToken: ct);
         Assert.True(repeatCount >= 0);
 
-        // 4. Владельцы с несколькими питомцами
         var ownersResp = await fixture.HttpClient.GetAsync($"{baseRoute}/owners/multiple-pets", ct);
         Assert.Equal(HttpStatusCode.OK, ownersResp.StatusCode);
         var owners = await ownersResp.Content.ReadFromJsonAsync<List<OwnerDto>>(_jsonOptions, cancellationToken: ct);
         Assert.NotNull(owners);
         Assert.NotEmpty(owners);
 
-        // 5. Приемы за интересующий месяц по кабинету (передаем обязательные query-параметры month и year)
         var monthResp = await fixture.HttpClient.GetAsync($"{baseRoute}/appointments/current-month/by-room/102?month=9&year=2026", ct);
         Assert.Equal(HttpStatusCode.OK, monthResp.StatusCode);
         var appointments = await monthResp.Content.ReadFromJsonAsync<List<AppointmentDto>>(_jsonOptions, cancellationToken: ct);
