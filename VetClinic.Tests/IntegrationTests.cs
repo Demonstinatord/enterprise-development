@@ -82,7 +82,7 @@ public class VetClinicIntegrationTests(VetClinicAspireFixture fixture) : IClassF
     /// Проверяет корректную обработку ошибки при попытке сослаться на несуществующего владельца.
     /// </summary>
     [Fact]
-    public async Task CreatePet_WithInvalidOwnerId_ReturnsNotFound()
+    public async Task CreatePetWithInvalidOwnerId()
     {
         var invalidDto = new PetCreateUpdateDto(
             Name: "Призрак",
